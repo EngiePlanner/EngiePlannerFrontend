@@ -1,0 +1,8 @@
+:host ::ng-deep html {
+    background-color: var(--bosch-gray-95);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}

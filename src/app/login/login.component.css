@@ -1,0 +1,41 @@
+.box {
+    width: 40rem;
+    height: 15rem;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+}
+
+.content {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.button {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.a-button {
+    width: 13rem;
+}
+
+.a-button:hover {
+    background-color: var(--bosch-blue-25);
+}
+
+.a-button:active {
+    background-color: var(--bosch-blue-25);
+}
+
+.logo-image {
+    height: 5rem;
+}
