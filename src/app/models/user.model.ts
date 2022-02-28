@@ -5,6 +5,7 @@ export interface IUser {
     email: string;
     groups: string[];
     leaderUsername: string;
+    leaderName: string;
     name: string;
     roleType: RoleType;
     username: string;

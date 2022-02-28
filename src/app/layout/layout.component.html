@@ -1,6 +1,12 @@
-<div class="body">
+<div style="height: 100% ;overflow: hidden;">
+  <app-navbar *ngIf="isLoggedIn"></app-navbar>
+    <app-sidebar
+      (closeSidebarButton)="isSidebarToggled=!isSidebarToggled"
+      *ngIf="isLoggedIn"
+  ></app-sidebar>
   <div
       class="content"
+      [ngClass]="{'sidebar-toggled':isSidebarToggled, 'sidebar-active':isLoggedIn}"
   >
       <router-outlet></router-outlet>
   </div>
