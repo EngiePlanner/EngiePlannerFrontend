@@ -1,0 +1,78 @@
+<div class="body-wrapper">
+  <div class="profile-header">Personal Profile</div>
+  <div class="input-row">
+      <div class="input-group">
+          <div>
+              <div>NT User:</div>
+              <div class="a-text-field">
+                  <input type="text" value="{{user.username}}" disabled="" />
+              </div>
+          </div>
+      </div>
+      <div class="input-group">
+          <div class="custom-input">
+              <div>Name:</div>
+              <div class="a-text-field">
+                  <input type="text" value="{{user.name}}" disabled="" />
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="input-row">
+      <div class="input-group">
+          <div class="custom-input">
+              <div>Email:</div>
+              <div class="a-text-field">
+                  <input type="text" value="{{user.email}}" disabled="" />
+              </div>
+          </div>
+      </div>
+      <div class="input-group">
+          <div class="custom-input">
+              <div>Role:</div>
+              <div class="a-text-field">
+                  <input type="text" value="{{user.roleType}}" disabled="" />
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="input-row">
+      <div class="input-group">
+          <div class="custom-input">
+              <div>Groups:</div>
+              <div class="a-text-field">
+                  <input type="text" value="{{user.groups}}" disabled="" />
+              </div>
+          </div>
+      </div>
+      <div class="input-group">
+          <div class="custom-input">
+              <div>Group Leader:</div>
+              <div class="a-text-field">
+                  <input
+                      type="text"
+                      value="{{ user.leaderName != null ? user.leaderName : '-' }}"
+                      disabled=""
+                  />
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="input-row">
+      <div class="input-group">
+          <div class="custom-input" style="width: 48.5%;">
+              <div>Departments:</div>
+              <div *ngIf="!user.departments?.length" class="a-text-field">
+                  <input type="text" value="-" disabled="" />
+              </div>
+              <div *ngIf="user.departments?.length" class="a-text-field">
+                  <input
+                      type="text"
+                      value="{{user.departments}}"
+                      disabled=""
+                  />
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

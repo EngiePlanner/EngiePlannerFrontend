@@ -1,0 +1,22 @@
+<div class="sidebar" [ngClass]="{'full-sidebar': isSidebarActive}">
+  <div class="content-row" (click)="closeButtonClicked()">
+      <div *ngIf="isSidebarActive" class="sidebar-title unselectable">
+          {{loggedUserUsername}}
+      </div>
+      <i
+          class="close-button"
+          [ngClass]="{'a-icon ui-ic-close': isSidebarActive, 'a-icon ui-ic-menu':!isSidebarActive}"
+      ></i>
+  </div>
+  <!-- Sidebar -->
+  <div class="menu">
+      <app-sidebar-element
+          *ngFor="let menuItem of sidebarElements"
+          [Title]="menuItem.Title"
+          [IconClass]="menuItem.IconClass"
+          [Route]="menuItem.Route"
+          [isSidebarActive]="isSidebarActive"
+      >
+      </app-sidebar-element>
+  </div>
+</div>

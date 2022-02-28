@@ -1,5 +1,14 @@
 .content {
+    overflow: auto;
     height: 100%;
-    padding: 0;
+    margin-left: 0;
     transition: 0.3s ease-in-out;
+}
+
+.sidebar-active {
+    margin-left: 4rem;
+}
+
+.sidebar-toggled {
+    margin-left: 15rem;
 }
