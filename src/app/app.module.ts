@@ -16,7 +16,7 @@ import { routes } from './app-routing.module';
 import { PersonalProfileComponent } from './personal-profile/personal-profile.component';
 
 @NgModule({
-  declarations: [				
+  declarations: [
     AppComponent,
       LoginComponent,
       LayoutComponent,
