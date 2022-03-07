@@ -21,6 +21,11 @@ export class SidebarComponent implements OnInit {
         Title: 'Home',
         IconClass: 'a-icon icon-home',
         Route: '/home'
+      },
+      {
+        Title: 'Tasks',
+        IconClass: 'a-icon icon-tasks',
+        Route: 'tasks'
       }
     ]
   }

@@ -1,58 +1,14 @@
-
-body,
-html {
-    overflow: hidden;
-    width: 100%;
+html,
+body {
     height: 100%;
-    background-color: var(--bosch-gray-95);
-    color: var(--bosch-black);
-    font-family: boschsans, Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
+    overflow-y: hidden;
 }
 
-*,
-::after,
-::before {
-    box-sizing: border-box;
-}
-
-a,
-a:visited {
-    color: var(--minor-accent__enabled__text__default);
-    text-decoration: none;
-}
-
-a:hover,
-a:visited:hover {
-    color: var(--minor-accent__enabled__text__hovered);
-    text-decoration: underline;
-}
-
-a:active {
-    color: var(--minor-accent__enabled__text__pressed);
+body {
+    margin: 0;
+    background-color: #dfdfe0;
 }
 
 svg {
-    fill: currentColor;
-}
-
-/* TODO: move this code inside another file that should be only for links */
-
-.a-link {
-    color: var(--minor-accent__enabled__text__default);
-    text-decoration: none;
-}
-
-.a-link--primary {
-    display: inline-block;
-}
-
-.a-link--simple {
-    display: flex;
-}
-
-.w-4 {
-    width: 1rem;
+    vertical-align: unset !important;
 }

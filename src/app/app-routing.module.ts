@@ -1,3 +1,4 @@
+import { HomeTaskComponent } from './tasks/home-task/home-task.component';
 import { PersonalProfileComponent } from './personal-profile/personal-profile.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,10 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: PersonalProfileComponent
+  },
+  {
+    path: 'tasks',
+    component: HomeTaskComponent
   }
 ];
 

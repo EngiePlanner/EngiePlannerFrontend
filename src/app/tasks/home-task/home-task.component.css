@@ -1,0 +1,10 @@
+.selected-tab {
+    border-bottom: 0.125rem solid var(--bosch-blue-50);
+    color: var(--bosch-blue-50);
+}
+
+.a-tab-navigation {
+    position: fixed;
+    margin-top: 0;
+    z-index: 1;
+}
