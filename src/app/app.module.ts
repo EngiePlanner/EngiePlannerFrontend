@@ -1,3 +1,6 @@
+import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
+import { AddTaskComponent } from './tasks/add-task/add-task.component';
+import { HomeTaskComponent } from './tasks/home-task/home-task.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SidebarElementComponent } from './shared/sidebar-element/sidebar-element.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -14,6 +17,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { HomeComponent } from './home/home.component';
 import { routes } from './app-routing.module';
 import { PersonalProfileComponent } from './personal-profile/personal-profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,13 +28,18 @@ import { PersonalProfileComponent } from './personal-profile/personal-profile.co
       NavbarComponent,
       SidebarElementComponent,
       SidebarComponent,
-      PersonalProfileComponent
+      PersonalProfileComponent,
+      HomeTaskComponent,
+      AddTaskComponent,
+      EditTaskComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     AuthenticationService,

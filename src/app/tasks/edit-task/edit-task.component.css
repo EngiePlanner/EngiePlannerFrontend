@@ -1,0 +1,108 @@
+.container {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.a-box {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    height: 35rem;
+    width: 60rem;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.select-tasks {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 60rem;
+    margin-top: 5rem;
+}
+
+.select-tasks.a-dropdown select {
+    background-color: white;
+}
+
+.content {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.input-row {
+    display: flex;
+    width: 50rem;
+    justify-content: space-between;
+}
+
+.input-group {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 1rem;
+    margin-top: 1rem;
+}
+
+.field-name {
+    text-align: left;
+}
+
+.a-button {
+    width: 15rem;
+    margin: auto 1rem;
+}
+
+.submit-btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.btn-alert:hover {
+    background-color: var(--bosch-red-40);
+}
+
+.btn-alert:active {
+    background-color: var(--bosch-red-35);
+}
+
+.btn-alert {
+    background-color: var(--bosch-red-45);
+    color: var(--bosch-white);
+}
+
+.m-dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 1000rem;
+    height: 100%;
+    background-color: rgba(192, 192, 194, 0.4);
+}
+
+.m-dialog .a-box {
+    position: absolute;
+    width: 50rem;
+    left: 50%;
+    transform: translate(-50%, 90%);
+    height: auto;
+    padding: 0;
+}
+
+.m-dialog__actions {
+    margin-top: 4rem;
+}

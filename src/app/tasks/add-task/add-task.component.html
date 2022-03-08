@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="a-box -floating">
+    <div class="content">
+      <div class="title">Add Task</div>
+      <form [formGroup]="form">
+        <div class="input-row">
+          <div class="input-group">
+            <div>
+              <div class="field-name">Name:</div>
+              <div class="a-text-field">
+                <input formControlName="name" id="name" type="text" placeholder="ex: Test the ECU" />
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <div>
+              <div class="field-name">Start Date:</div>
+              <div class="a-text-field">
+                <input formControlName="startDate" id="startDate" type="date"/>
+              </div>
+            </div>
+          </div>
+          <div class="input-group">
+            <div>
+              <div class="field-name">Planned Date:</div>
+              <div class="a-text-field">
+                <input formControlName="plannedDate" type="date"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <div>
+              <div class="field-name">Delivery:</div>
+              <div class="a-dropdown">
+                <select formControlName="delivery" id="delivery">
+                  <option value="{{delivery.id}}" *ngFor="let delivery of deliveries">
+                    {{delivery.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="input-group">
+            <div>
+              <div class="field-name">Subteam:</div>
+              <div class="a-dropdown">
+                <select formControlName="subteam" id="subteam">
+                  <option value="{{subteam}}" *ngFor="let subteam of subteams">
+                    {{subteam}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <div>
+              <div class="field-name">Employees:</div>
+              <div class="a-dropdown">
+                <select formControlName="employees" id="employees">
+                  <option value="{{employee.username}}" *ngFor="let employee of users">
+                    {{employee.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="input-group">
+            <div>
+              <div class="field-name">Duration:</div>
+              <div class="a-text-field">
+                <input formControlName="duration" type="number" placeholder="ex: 5" min="1"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="submit-btn">
+        <button
+            type="button"
+            class="a-button a-button--primary -without-icon"
+        >
+            <div class="a-button__label" (click)="submit()">Submit</div>
+        </button>
+    </div>
+    </div>
+  </div>
+</div>
