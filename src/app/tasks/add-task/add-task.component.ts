@@ -1,10 +1,12 @@
+import { TaskValidator } from './../../validators/task-validator';
 import { IDelivery } from './../../models/delivery.model';
 import { ITask } from './../../models/task.model';
 import { IUser } from './../../models/user.model';
 import { UserService } from './../../services/user.service';
 import { TaskService } from './../../services/task.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessageBarComponent } from 'src/app/shared/message-bar/message-bar.component';
 
 @Component({
   selector: 'app-add-task',
@@ -12,20 +14,25 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent implements OnInit {
+  formErrors: string[] = [] as string[];
+  @ViewChild('messageBar') messageBar = {} as MessageBarComponent;
+  isFormValid = false;
+  today = Date.now();
+
   form = new FormGroup ({
-    name: new FormControl(''),
-    delivery: new FormControl(''),
-    startDate: new FormControl(''),
-    plannedDate: new FormControl(''),
-    subteam: new FormControl(''),
-    duration: new FormControl(''),
-    employees: new FormControl('')
+    name: new FormControl('', Validators.required),
+    delivery: new FormControl('', Validators.required),
+    startDate: new FormControl('', Validators.required),
+    plannedDate: new FormControl('', Validators.required),
+    subteam: new FormControl('', Validators.required),
+    duration: new FormControl('', Validators.required),
+    employees: new FormControl('', Validators.required)
   });
   users: IUser[] = [] as IUser[];
   deliveries: IDelivery[] = [] as IDelivery[];
   subteams = ['s1', 's2', 's3'];
 
-  constructor(private taskService: TaskService, private userService: UserService) { }
+  constructor(private taskService: TaskService, private userService: UserService, private taskValidator: TaskValidator) { }
 
   get name(): FormControl {
     return this.form.get('name') as FormControl
@@ -77,7 +84,25 @@ export class AddTaskComponent implements OnInit {
       employees: employeesArray
     } as ITask
 
-    this.taskService.createTask(task).subscribe();
-    this.form.reset();
+    this.taskService.createTask(task).subscribe(() => {
+      this.messageBar.addSuccessTimeOut('Task added successfully!');
+      this.form.reset();
+      this.isFormValid = false;
+    },
+    error => {
+      if (error.status == 400) {
+        this.messageBar.addErrorTimeOut(error.error);
+      }
+    });
+    
+  }
+
+  validateForm(formControl: FormControl, targetInput: string): void {
+    this.formErrors = this.taskValidator.validateFields(formControl, targetInput);
+    this.isFormValid = this.formErrors.length == 0 && this.form.valid;
+  }
+
+  ngOnDestroy(): void {
+    this.taskValidator.clearErrors();
   }
 }

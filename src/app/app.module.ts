@@ -1,3 +1,4 @@
+import { MessageBarComponent } from './shared/message-bar/message-bar.component';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 import { AddTaskComponent } from './tasks/add-task/add-task.component';
 import { HomeTaskComponent } from './tasks/home-task/home-task.component';
@@ -31,7 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       PersonalProfileComponent,
       HomeTaskComponent,
       AddTaskComponent,
-      EditTaskComponent
+      EditTaskComponent,
+      MessageBarComponent
    ],
   imports: [
     BrowserModule,
