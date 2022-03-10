@@ -1,11 +1,13 @@
+import { TaskValidator } from './../../validators/task-validator';
 import { IDelivery } from './../../models/delivery.model';
 import { IUser } from './../../models/user.model';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
 import { ITask } from 'src/app/models/task.model';
 import { DatePipe } from '@angular/common';
+import { MessageBarComponent } from 'src/app/shared/message-bar/message-bar.component';
 
 @Component({
   selector: 'app-edit-task',
@@ -13,15 +15,19 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./edit-task.component.css']
 })
 export class EditTaskComponent implements OnInit {
+  formErrors: string[] = [] as string[];
+  @ViewChild('messageBar') messageBar = {} as MessageBarComponent;
+  isFormValid = false;
+  today = Date.now();
 
   form = new FormGroup ({
-    name: new FormControl(''),
-    delivery: new FormControl(''),
-    startDate: new FormControl(''),
-    plannedDate: new FormControl(''),
-    subteam: new FormControl(''),
-    duration: new FormControl(''),
-    employees: new FormControl('')
+    name: new FormControl('', Validators.required),
+    delivery: new FormControl('', Validators.required),
+    startDate: new FormControl('', Validators.required),
+    plannedDate: new FormControl('', Validators.required),
+    subteam: new FormControl('', Validators.required),
+    duration: new FormControl('', Validators.required),
+    employees: new FormControl('', Validators.required)
   });
   users: IUser[] = [] as IUser[];
   deliveries: IDelivery[] = [] as IDelivery[];
@@ -31,7 +37,7 @@ export class EditTaskComponent implements OnInit {
   pipe = new DatePipe('en-US');
   deleteButtonClicked = false;
 
-  constructor(private taskService: TaskService, private userService: UserService) { }
+  constructor(private taskService: TaskService, private userService: UserService, private taskValidator: TaskValidator) { }
 
   get name(): FormControl {
     return this.form.get('name') as FormControl
@@ -102,17 +108,36 @@ export class EditTaskComponent implements OnInit {
       employees: this.employees.value
     } as ITask
 
-    this.taskService.updateTask(task).subscribe();
-    this.form.reset();
-    this.selectedTask = undefined;
-    this.loadData();
+    this.taskService.updateTask(task).subscribe(() => {
+      this.messageBar.addSuccessTimeOut('Task updated successfully!');
+      this.form.reset();
+      this.selectedTask = undefined;
+      this.loadData();
+    },
+    error => {
+      if (error.status == 400) {
+        this.messageBar.addErrorTimeOut(error.error);
+      }
+    });
+    
   }
 
   deleteTask() {
-    this.taskService.deleteTask(this.selectedTask?.id!).subscribe();
-    this.form.reset()
-    this.selectedTask = undefined;
-    this.loadData()
+    this.taskService.deleteTask(this.selectedTask?.id!).subscribe(() => {
+      this.messageBar.addSuccessTimeOut('Task deleted successfully!');
+      this.form.reset()
+      this.selectedTask = undefined;
+      this.loadData()
+    });
+    
   }
 
+  validateForm(formControl: FormControl, targetInput: string): void {
+    this.formErrors = this.taskValidator.validateFields(formControl, targetInput);
+    this.isFormValid = this.formErrors.length == 0 && this.form.valid;
+  }
+
+  ngOnDestroy(): void {
+    this.taskValidator.clearErrors();
+  }
 }
