@@ -1,3 +1,4 @@
+import { AvailabilityComponent } from './availability/availability.component';
 import { HomeTaskComponent } from './tasks/home-task/home-task.component';
 import { PersonalProfileComponent } from './personal-profile/personal-profile.component';
 import { HomeComponent } from './home/home.component';
@@ -21,6 +22,10 @@ export const routes: Routes = [
   {
     path: 'tasks',
     component: HomeTaskComponent
+  },
+  {
+    path: 'availability',
+    component: AvailabilityComponent
   }
 ];
 

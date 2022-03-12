@@ -54,3 +54,15 @@
     content: url('../../../assets/tasks.svg');
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(71deg) brightness(101%) contrast(102%);
 }
+
+.icon-availability::before {
+    position: absolute;
+    display: block;
+    width: 2.2rem;
+    height: 2.5rem;
+    justify-content: center;
+}
+
+.boschicon-bosch-ic-calendar-clock {
+    font-size: 28px;
+}
