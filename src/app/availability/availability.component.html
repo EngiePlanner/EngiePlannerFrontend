@@ -1,0 +1,52 @@
+<app-message-bar #messageBar></app-message-bar>
+<div class="container">
+  <div class="antent">Weeks</div>
+  <div class="box">
+    <div class="weeks a-box -floating" *ngFor="let week of weeks" (click)="onWeekClick(week)">
+      <div class="title">Week {{week.number}}</div>
+      <div class="dates">
+        <div>From: {{week.firstDay | date}}</div>
+        <div>To: {{week.lastDay | date}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <form [formGroup]="form">
+      <div class="input-row">
+        <div class="input-group">
+          <div>
+            <div class="field-name">From Date:</div>
+            <div class="a-text-field">
+              <input formControlName="fromDate" type="date" placeholder="dd/MM/yyyy" readonly />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <div>
+            <div class="field-name">To Date:</div>
+            <div class="a-text-field">
+              <input formControlName="toDate" type="date" readonly />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <div>
+            <div class="field-name">Available Hours:</div>
+            <div class="a-text-field">
+              <input formControlName="availableHours" type="number" min="0" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="submit-btn">
+      <button type="button" class="a-button a-button--primary -without-icon" (click)="update()">
+        <div class="a-button__label">Update</div>
+      </button>
+    </div>
+  </div>
+</div>

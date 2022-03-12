@@ -19,9 +19,11 @@ import { HomeComponent } from './home/home.component';
 import { routes } from './app-routing.module';
 import { PersonalProfileComponent } from './personal-profile/personal-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AvailabilityComponent } from './availability/availability.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
       LoginComponent,
       LayoutComponent,
@@ -33,7 +35,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       HomeTaskComponent,
       AddTaskComponent,
       EditTaskComponent,
-      MessageBarComponent
+      MessageBarComponent,
+      AvailabilityComponent
    ],
   imports: [
     BrowserModule,
@@ -49,6 +52,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       provide: HTTP_INTERCEPTORS,
       useClass: WinAuthInterceptor,
       multi: true
+    },
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'en-GB',
     }
   ],
   bootstrap: [AppComponent]

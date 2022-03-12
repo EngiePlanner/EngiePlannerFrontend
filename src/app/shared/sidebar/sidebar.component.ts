@@ -25,7 +25,12 @@ export class SidebarComponent implements OnInit {
       {
         Title: 'Tasks',
         IconClass: 'a-icon icon-tasks',
-        Route: 'tasks'
+        Route: '/tasks'
+      },
+      {
+        Title: 'Availability',
+        IconClass: 'a-icon boschicon-bosch-ic-calendar-clock icon-availability',
+        Route: '/availability'
       }
     ]
   }

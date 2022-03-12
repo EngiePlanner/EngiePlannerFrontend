@@ -119,7 +119,6 @@ export class EditTaskComponent implements OnInit {
         this.messageBar.addErrorTimeOut(error.error);
       }
     });
-    
   }
 
   deleteTask() {
