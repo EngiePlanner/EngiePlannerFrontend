@@ -21,9 +21,10 @@ import { PersonalProfileComponent } from './personal-profile/personal-profile.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AvailabilityComponent } from './availability/availability.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { SchedulingComponent } from './scheduling/scheduling.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
       LoginComponent,
       LayoutComponent,
@@ -36,7 +37,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
       AddTaskComponent,
       EditTaskComponent,
       MessageBarComponent,
-      AvailabilityComponent
+      AvailabilityComponent,
+      SchedulingComponent
    ],
   imports: [
     BrowserModule,

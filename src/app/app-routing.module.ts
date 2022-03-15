@@ -1,3 +1,4 @@
+import { SchedulingComponent } from './scheduling/scheduling.component';
 import { AvailabilityComponent } from './availability/availability.component';
 import { HomeTaskComponent } from './tasks/home-task/home-task.component';
 import { PersonalProfileComponent } from './personal-profile/personal-profile.component';
@@ -26,6 +27,10 @@ export const routes: Routes = [
   {
     path: 'availability',
     component: AvailabilityComponent
+  },
+  {
+    path: 'schedule',
+    component: SchedulingComponent
   }
 ];
 

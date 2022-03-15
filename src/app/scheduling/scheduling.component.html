@@ -1,0 +1,28 @@
+<app-message-bar></app-message-bar>
+<div class="container">
+  <div class="title">
+    <h4>Tasks scheduling</h4>
+  </div>
+  <div *ngIf="!tasks">No tasks found!</div>
+  <div class="a-box -floating" *ngFor="let task of tasks">
+    <div class="header">
+      <div class="task-title">
+        {{task.name}}
+      </div>
+      <div class="a-checkbox">
+        <input type="checkbox" id="task-{{task.id}}" (change)="onCheckboxClick(task, $event)"/>
+        <label for="task-{{task.id}}">Schedule task</label>
+      </div>
+    </div>
+    <hr class="a-divider"/>
+    <div class="content">
+      Has to be delivered on {{task.plannedDate | date: 'dd MMMM'}} by {{task.employees[0]}}
+    </div>
+  </div>
+  <div class="submit-btn">
+    <button type="button" class="a-button a-button--primary -without-icon"
+      (click)="schedule()">
+      <div class="a-button__label">Schedule</div>
+    </button>
+  </div>
+</div>

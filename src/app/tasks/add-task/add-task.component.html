@@ -9,18 +9,20 @@
             <div>
               <div class="field-name">Name:</div>
               <div class="a-text-field">
-                <input formControlName="name" id="name" type="text" placeholder="ex: Test the ECU" (blur)="validateForm(name, 'Name')"/>
+                <input formControlName="name" id="name" type="text" placeholder="ex: Test the ECU"
+                  (blur)="validateForm(name, 'Name')" />
               </div>
             </div>
           </div>
-          
+
         </div>
         <div class="input-row">
           <div class="input-group">
             <div>
               <div class="field-name">Start Date:</div>
               <div class="a-text-field">
-                <input formControlName="startDate" type="date" min="{{today | date:'yyyy-MM-dd'}}" (blur)="validateForm(startDate, 'Start Date')"/>
+                <input formControlName="startDate" type="date" min="{{today | date:'yyyy-MM-dd'}}"
+                  (blur)="validateForm(startDate, 'Start Date')" />
               </div>
             </div>
           </div>
@@ -28,7 +30,8 @@
             <div>
               <div class="field-name">Planned Date:</div>
               <div class="a-text-field">
-                <input formControlName="plannedDate" type="date" min="{{today | date:'yyyy-MM-dd'}}" (blur)="validateForm(plannedDate, 'Planned Date')"/>
+                <input formControlName="plannedDate" type="date" min="{{today | date:'yyyy-MM-dd'}}"
+                  (blur)="validateForm(plannedDate, 'Planned Date')" />
               </div>
             </div>
           </div>
@@ -76,22 +79,19 @@
             <div>
               <div class="field-name">Duration:</div>
               <div class="a-text-field">
-                <input formControlName="duration" type="number" placeholder="ex: 5" min="1" (blur)="validateForm(duration, 'Duration')"/>
+                <input formControlName="duration" type="number" placeholder="ex: 5" min="1"
+                  (blur)="validateForm(duration, 'Duration')" />
               </div>
             </div>
           </div>
         </div>
       </form>
       <div class="submit-btn">
-        <button
-            type="button"
-            class="a-button a-button--primary -without-icon"
-            [disabled]="!isFormValid"
-            (click)="submit()"
-        >
-            <div class="a-button__label">Submit</div>
+        <button type="button" class="a-button a-button--primary -without-icon" [disabled]="!isFormValid"
+          (click)="submit()">
+          <div class="a-button__label">Submit</div>
         </button>
-    </div>
+      </div>
     </div>
   </div>
 </div>
