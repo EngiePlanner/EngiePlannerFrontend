@@ -22,9 +22,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AvailabilityComponent } from './availability/availability.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { SchedulingComponent } from './scheduling/scheduling.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
 
 @NgModule({
-  declarations: [		
+  declarations: [
     AppComponent,
       LoginComponent,
       LayoutComponent,
@@ -50,6 +51,7 @@ import { SchedulingComponent } from './scheduling/scheduling.component';
   ],
   providers: [
     AuthenticationService,
+    AuthenticationGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: WinAuthInterceptor,

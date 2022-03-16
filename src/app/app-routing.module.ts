@@ -1,3 +1,4 @@
+import { AuthenticationGuard } from './guards/authentication.guard';
 import { SchedulingComponent } from './scheduling/scheduling.component';
 import { AvailabilityComponent } from './availability/availability.component';
 import { HomeTaskComponent } from './tasks/home-task/home-task.component';
@@ -10,27 +11,32 @@ import { LoginComponent } from './login/login.component';
 export const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'profile',
-    component: PersonalProfileComponent
+    component: PersonalProfileComponent,
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'tasks',
-    component: HomeTaskComponent
+    component: HomeTaskComponent,
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'availability',
-    component: AvailabilityComponent
+    component: AvailabilityComponent,
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'schedule',
-    component: SchedulingComponent
+    component: SchedulingComponent,
+    canActivate: [AuthenticationGuard]
   }
 ];
 
