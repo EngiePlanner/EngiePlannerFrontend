@@ -13,7 +13,6 @@ export class TaskValidator {
 
     constructor() {
         this.formValidators.set('Name', this.checkRequired);
-        this.formValidators.set('Delivery', this.checkRequired);
         this.formValidators.set('Start Date', this.checkRequired);
         this.formValidators.set('Planned Date', this.checkRequired);
         this.formValidators.set('Subteam', this.checkRequired);
@@ -27,7 +26,7 @@ export class TaskValidator {
 
     async checkRequired(formControl: FormControl, targetInput: string): Promise<void> {
         const errors: string[] = [];
-        
+
         if (formControl.errors?.required) {
             errors.push(targetInput + ' is required!');
         }
@@ -37,7 +36,6 @@ export class TaskValidator {
 
     clearErrors(): void {
         this.formErrors.set('Name', []);
-        this.formErrors.set('Delivery', []);
         this.formErrors.set('Start Date', []);
         this.formErrors.set('Planned Date', []);
         this.formErrors.set('Subteam', []);

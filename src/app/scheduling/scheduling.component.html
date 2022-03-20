@@ -16,7 +16,7 @@
     </div>
     <hr class="a-divider"/>
     <div class="content">
-      Has to be delivered on {{task.plannedDate | date: 'dd MMMM'}} by {{task.employees[0]}}
+      Has to be delivered on {{task.plannedDate | date: 'dd MMMM'}} by {{task.employee.displayName}}
     </div>
   </div>
   <div class="submit-btn">
