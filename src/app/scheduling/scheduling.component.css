@@ -45,3 +45,18 @@
   justify-content: center;
   margin-top: 2.5rem;
 }
+
+.antet {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.antet .a-checkbox {
+  margin-top: 2.5rem;
+  margin-right: 0;
+}
+
+.antet .a-checkbox label{
+  background-color: #dfdfe0
+}

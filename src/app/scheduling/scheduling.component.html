@@ -1,7 +1,13 @@
 <app-message-bar></app-message-bar>
 <div class="container">
-  <div class="title">
-    <h4>Tasks scheduling</h4>
+  <div class="antet">
+    <div class="title">
+      <h4>Tasks scheduling</h4>
+    </div>
+    <div class="a-checkbox">
+      <input type="checkbox" [(ngModel)]="isMasterSel" id="all" (change)="checkUncheckAll()"/>
+      <label for="all">Select all / Unselect all</label>
+    </div>
   </div>
   <div *ngIf="!tasks">No tasks found!</div>
   <div class="a-box -floating" *ngFor="let task of tasks">
@@ -10,7 +16,7 @@
         {{task.name}}
       </div>
       <div class="a-checkbox">
-        <input type="checkbox" id="task-{{task.id}}" (change)="onCheckboxClick(task, $event)"/>
+        <input type="checkbox" [(ngModel)]="task.isSelected" id="task-{{task.id}}" (change)="isAllSelected()"/>
         <label for="task-{{task.id}}">Schedule task</label>
       </div>
     </div>

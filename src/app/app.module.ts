@@ -1,3 +1,4 @@
+import { RoleGuard } from './guards/role.guard';
 import { MessageBarComponent } from './shared/message-bar/message-bar.component';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 import { AddTaskComponent } from './tasks/add-task/add-task.component';
@@ -52,6 +53,7 @@ import { AuthenticationGuard } from './guards/authentication.guard';
   providers: [
     AuthenticationService,
     AuthenticationGuard,
+    RoleGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: WinAuthInterceptor,

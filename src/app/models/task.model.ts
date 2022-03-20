@@ -9,4 +9,5 @@ export interface ITask {
     employeeUsername: string;
     employee: IUser;
     predecessors: ITask[];
+    isSelected?: boolean
 }

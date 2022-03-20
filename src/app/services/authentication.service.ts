@@ -49,6 +49,10 @@ export class AuthenticationService {
     return this.getDecodedToken().Username;
   }
 
+  getRole() {
+    return this.getDecodedToken().Role
+  }
+
   activeSession(): boolean {
     return this.getToken() != null;
   }
