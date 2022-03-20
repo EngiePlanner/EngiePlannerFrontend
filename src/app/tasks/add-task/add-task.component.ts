@@ -1,5 +1,4 @@
 import { TaskValidator } from './../../validators/task-validator';
-import { IDelivery } from './../../models/delivery.model';
 import { ITask } from './../../models/task.model';
 import { IUser } from './../../models/user.model';
 import { UserService } from './../../services/user.service';
@@ -21,25 +20,21 @@ export class AddTaskComponent implements OnInit {
 
   form = new FormGroup ({
     name: new FormControl('', Validators.required),
-    delivery: new FormControl('', Validators.required),
     startDate: new FormControl('', Validators.required),
     plannedDate: new FormControl('', Validators.required),
     subteam: new FormControl('', Validators.required),
     duration: new FormControl('', Validators.required),
-    employees: new FormControl('', Validators.required)
+    employee: new FormControl('', Validators.required),
   });
   users: IUser[] = [] as IUser[];
-  deliveries: IDelivery[] = [] as IDelivery[];
+  tasks: ITask[] = [] as ITask[];
+  availableTasks: ITask[] = [] as ITask[];
   subteams = ['s1', 's2', 's3'];
 
   constructor(private taskService: TaskService, private userService: UserService, private taskValidator: TaskValidator) { }
 
   get name(): FormControl {
     return this.form.get('name') as FormControl
-  }
-
-  get delivery(): FormControl {
-    return this.form.get('delivery') as FormControl
   }
 
   get startDate(): FormControl {
@@ -58,8 +53,8 @@ export class AddTaskComponent implements OnInit {
     return this.form.get('duration') as FormControl
   }
 
-  get employees(): FormControl {
-    return this.form.get('employees') as FormControl
+  get employee(): FormControl {
+    return this.form.get('employee') as FormControl
   }
 
   ngOnInit() {
@@ -67,21 +62,18 @@ export class AddTaskComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.userService.getAllUsers().subscribe(users => this.users = users) 
-    this.taskService.getAllDeliveries().subscribe(deliveries => this.deliveries = deliveries)
+    this.userService.getAllUsers().subscribe(users => this.users = users);
+    this.taskService.getAllTasks().subscribe(tasks => this.tasks = tasks);
   }
 
   submit() {
-    const employeesArray = [];
-    employeesArray.push(this.employees.value)
     const task = {
       name: this.name.value,
-      deliveryId: Number(this.delivery.value) != 0 ? Number(this.delivery.value) : null,
       startDate: this.startDate.value,
       plannedDate: this.plannedDate.value,
       subteam: this.subteam.value,
       duration: this.duration.value,
-      employees: employeesArray
+      employeeUsername: this.employee.value,
     } as ITask
 
     this.taskService.createTask(task).subscribe(() => {
@@ -94,7 +86,7 @@ export class AddTaskComponent implements OnInit {
         this.messageBar.addErrorTimeOut(error.error);
       }
     });
-    
+
   }
 
   validateForm(formControl: FormControl, targetInput: string): void {

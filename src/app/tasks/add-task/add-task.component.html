@@ -31,24 +31,12 @@
               <div class="field-name">Planned Date:</div>
               <div class="a-text-field">
                 <input formControlName="plannedDate" type="date" min="{{today | date:'yyyy-MM-dd'}}"
-                  (blur)="validateForm(plannedDate, 'Planned Date')" />
+                  (blur)="validateForm(plannedDate, 'Planned Date')"/>
               </div>
             </div>
           </div>
         </div>
         <div class="input-row">
-          <div class="input-group">
-            <div>
-              <div class="field-name">Delivery:</div>
-              <div class="a-dropdown">
-                <select formControlName="delivery" id="delivery" (blur)="validateForm(delivery, 'Delivery')">
-                  <option value="{{delivery.id}}" *ngFor="let delivery of deliveries">
-                    {{delivery.name}}
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
           <div class="input-group">
             <div>
               <div class="field-name">Subteam:</div>
@@ -61,26 +49,26 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="input-row">
-          <div class="input-group">
-            <div>
-              <div class="field-name">Employees:</div>
-              <div class="a-dropdown">
-                <select formControlName="employees" id="employees" (blur)="validateForm(employees, 'Employee')">
-                  <option value="{{employee.username}}" *ngFor="let employee of users">
-                    {{employee.name}}
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
           <div class="input-group">
             <div>
               <div class="field-name">Duration:</div>
               <div class="a-text-field">
                 <input formControlName="duration" type="number" placeholder="ex: 5" min="1"
                   (blur)="validateForm(duration, 'Duration')" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <div>
+              <div class="field-name">Employee:</div>
+              <div class="a-dropdown">
+                <select formControlName="employee" id="employee" (blur)="validateForm(employee, 'Employee')">
+                  <option value="{{employee.username}}" *ngFor="let employee of users">
+                    {{employee.displayName}}
+                  </option>
+                </select>
               </div>
             </div>
           </div>

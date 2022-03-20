@@ -1,5 +1,4 @@
 import { TaskValidator } from './../../validators/task-validator';
-import { IDelivery } from './../../models/delivery.model';
 import { IUser } from './../../models/user.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -22,17 +21,15 @@ export class EditTaskComponent implements OnInit {
 
   form = new FormGroup ({
     name: new FormControl('', Validators.required),
-    delivery: new FormControl('', Validators.required),
     startDate: new FormControl('', Validators.required),
     plannedDate: new FormControl('', Validators.required),
     subteam: new FormControl('', Validators.required),
     duration: new FormControl('', Validators.required),
-    employees: new FormControl('', Validators.required)
+    employee: new FormControl('', Validators.required)
   });
   users: IUser[] = [] as IUser[];
-  deliveries: IDelivery[] = [] as IDelivery[];
   tasks: ITask[] = [] as ITask[];
-  subteams = ['s1', 's2', 's3'];
+  subteams = ['s1', 's2', 's3', 'S1'];
   selectedTask: ITask | undefined;
   pipe = new DatePipe('en-US');
   deleteButtonClicked = false;
@@ -41,10 +38,6 @@ export class EditTaskComponent implements OnInit {
 
   get name(): FormControl {
     return this.form.get('name') as FormControl
-  }
-
-  get delivery(): FormControl {
-    return this.form.get('delivery') as FormControl
   }
 
   get startDate(): FormControl {
@@ -63,8 +56,8 @@ export class EditTaskComponent implements OnInit {
     return this.form.get('duration') as FormControl
   }
 
-  get employees(): FormControl {
-    return this.form.get('employees') as FormControl
+  get employee(): FormControl {
+    return this.form.get('employee') as FormControl
   }
 
   ngOnInit() {
@@ -72,8 +65,7 @@ export class EditTaskComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.userService.getAllUsers().subscribe(users => this.users = users) 
-    this.taskService.getAllDeliveries().subscribe(deliveries => this.deliveries = deliveries)
+    this.userService.getAllUsers().subscribe(users => this.users = users)
     this.taskService.getAllTasks().subscribe(tasks => this.tasks = tasks)
   }
 
@@ -82,12 +74,11 @@ export class EditTaskComponent implements OnInit {
     const plannedDate = this.pipe.transform(this.selectedTask!.plannedDate, "yyyy-MM-dd");
     this.form.patchValue({
       name: this.selectedTask!.name,
-      delivery: this.selectedTask!.deliveryId,
       startDate: startDate,
       plannedDate: plannedDate,
       subteam: this.selectedTask!.subteam,
       duration: this.selectedTask!.duration,
-      employees: this.selectedTask!.employees
+      employee: this.selectedTask!.employeeUsername
     })
   }
 
@@ -100,12 +91,11 @@ export class EditTaskComponent implements OnInit {
     const task = {
       id: this.selectedTask?.id,
       name: this.name.value,
-      deliveryId: Number(this.delivery.value) != 0 ? Number(this.delivery.value) : null,
       startDate: this.startDate.value,
       plannedDate: this.plannedDate.value,
       subteam: this.subteam.value,
       duration: this.duration.value,
-      employees: this.employees.value
+      employeeUsername: this.employee.value
     } as ITask
 
     this.taskService.updateTask(task).subscribe(() => {
@@ -128,7 +118,7 @@ export class EditTaskComponent implements OnInit {
       this.selectedTask = undefined;
       this.loadData()
     });
-    
+
   }
 
   validateForm(formControl: FormControl, targetInput: string): void {

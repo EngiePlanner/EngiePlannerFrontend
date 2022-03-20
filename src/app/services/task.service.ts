@@ -3,7 +3,6 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { ITask } from '../models/task.model';
-import { IDelivery } from '../models/delivery.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +18,6 @@ export class TaskService {
 
   getAllTasks(): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.url + 'GetAllTasks');
-  }
-
-  getAllDeliveries(): Observable<IDelivery[]> {
-    return this.http.get<IDelivery[]>(this.url + 'GetAllDeliveries');
   }
 
   createTask(task: ITask): Observable<ITask> {
