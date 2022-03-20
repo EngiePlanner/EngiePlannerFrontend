@@ -1,3 +1,4 @@
+import { RoleGuard } from './guards/role.guard';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { SchedulingComponent } from './scheduling/scheduling.component';
 import { AvailabilityComponent } from './availability/availability.component';
@@ -36,7 +37,10 @@ export const routes: Routes = [
   {
     path: 'schedule',
     component: SchedulingComponent,
-    canActivate: [AuthenticationGuard]
+    canActivate: [AuthenticationGuard, RoleGuard],
+    data: {
+      expectedRoles: ['Admin', 'Leader']
+    }
   }
 ];
 

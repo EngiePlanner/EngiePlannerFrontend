@@ -32,12 +32,17 @@ export class SidebarComponent implements OnInit {
         IconClass: 'a-icon boschicon-bosch-ic-calendar-clock icon-availability',
         Route: '/availability'
       },
-      {
-        Title: 'Schedule',
-        IconClass: 'a-icon boschicon-bosch-ic-timeline-settings icon-schedule',
-        Route: '/schedule'
-      }
     ]
+
+    if (this.autenticationService.getRole() != 'Associate') {
+      this.sidebarElements.push(
+        {
+          Title: 'Schedule',
+          IconClass: 'a-icon boschicon-bosch-ic-timeline-settings icon-schedule',
+          Route: '/schedule'
+        }
+      );
+    }
   }
 
   closeButtonClicked(): void {
