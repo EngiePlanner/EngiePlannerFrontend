@@ -1,39 +1,32 @@
 <ol class="a-tab-navigation" style="background-color: var(--bosch-white);">
-  <li class="a-tab-navigation__item">
-      <button
-          type="button"
-          class="a-tab-navigation__tab"
-          data-frok-tab-identifier="1"
-          tabindex="0"
-          (click)="optionMenu='AddTask'"
-          [class.selected-tab]="optionMenu == 'AddTask'"
-      >
-          <span class="a-tab-navigation__tab-content">
-              <i
-                  class="a-icon a-tab-navigation__icon boschicon-bosch-ic-add"
-                  title="Lorem Ipsum"
-              ></i>
-              <span class="a-tab-navigation__label">Add Task</span>
-          </span>
-      </button>
-  </li>
-  <li class="a-tab-navigation__item">
-      <button
-          [class.selected-tab]="optionMenu == 'EditTask'"
-          type="button"
-          class="a-tab-navigation__tab"
-          data-frok-tab-identifier="2"
-          tabindex="0"
-          (click)="optionMenu='EditTask'"
-      >
-          <span class="a-tab-navigation__tab-content">
-              <i
-                  class="a-icon a-tab-navigation__icon boschicon-bosch-ic-edit"
-              ></i>
-              <span class="a-tab-navigation__label">Edit Task</span>
-          </span>
-      </button>
-  </li>
+    <li class="a-tab-navigation__item">
+        <button type="button" class="a-tab-navigation__tab" data-frok-tab-identifier="1" tabindex="0"
+            (click)="optionMenu='AddTask'" [class.selected-tab]="optionMenu == 'AddTask'">
+            <span class="a-tab-navigation__tab-content">
+                <i class="a-icon a-tab-navigation__icon boschicon-bosch-ic-add" title="Lorem Ipsum"></i>
+                <span class="a-tab-navigation__label">Add Task</span>
+            </span>
+        </button>
+    </li>
+    <li class="a-tab-navigation__item">
+        <button [class.selected-tab]="optionMenu == 'EditTask'" type="button" class="a-tab-navigation__tab"
+            data-frok-tab-identifier="2" tabindex="0" (click)="optionMenu='EditTask'">
+            <span class="a-tab-navigation__tab-content">
+                <i class="a-icon a-tab-navigation__icon boschicon-bosch-ic-edit"></i>
+                <span class="a-tab-navigation__label">Edit Task</span>
+            </span>
+        </button>
+    </li>
+    <li class="a-tab-navigation__item">
+        <button [class.selected-tab]="optionMenu == 'Predecessors'" type="button" class="a-tab-navigation__tab"
+            data-frok-tab-identifier="3" tabindex="0" (click)="optionMenu='Predecessors'">
+            <span class="a-tab-navigation__tab-content">
+                <i class="a-icon boschicon-bosch-ic-structure"></i>
+                <span class="a-tab-navigation__label">Predecessors</span>
+            </span>
+        </button>
+    </li>
 </ol>
 <app-add-task *ngIf="optionMenu == 'AddTask'"></app-add-task>
 <app-edit-task *ngIf="optionMenu == 'EditTask'"></app-edit-task>
+<app-predecessors *ngIf="optionMenu == 'Predecessors'"></app-predecessors>"

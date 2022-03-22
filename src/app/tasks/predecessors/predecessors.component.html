@@ -1,0 +1,69 @@
+<app-message-bar #messageBar [errors]="formErrors"> </app-message-bar>
+<div class="container">
+  <div class="a-box -floating">
+    <div class="content">
+      <div class="title">Add Predecessors</div>
+      <div class="input-row">
+        <div class="input-group">
+          <div class="field-name">Task:</div>
+          <div class="select-tasks a-dropdown">
+            <select [(ngModel)]="selectedTask" (ngModelChange)="selectTask()">
+              <option *ngFor="let task of tasks" [ngValue]="task">
+                {{task.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <div class="field-name">Predecessors:</div>
+          <div class="a-dropdown_multiple">
+            <ng-select
+                class="select-multiple"
+                [items]="potentialPredecessors"
+                [multiple]="true"
+                groupBy="name"
+                [selectableGroup]="true"
+                [selectableGroupAsModel]="false"
+                [searchable]="false"
+                [closeOnSelect]="false"
+                [(ngModel)]="selectedPredecessors"
+                (change)="onChange()"
+            >
+                <ng-template ng-multi-label-tmp let-clear="clear">
+                </ng-template>
+                <ng-template
+                    ng-optgroup-tmp
+                    let-item="item"
+                    let-item$="item$"
+                    let-index="index"
+                >
+                    <div class="a-checkbox">
+                        <input
+                            id="item-{{index}}"
+                            type="checkbox"
+                            [ngModel]="item$.selected"
+                        />
+                        <label for="-{{index}}"> {{item.name}}</label>
+                    </div>
+                </ng-template>
+                <ng-template
+                    ng-option-tmp
+                    let-item="item"
+                    let-item$="item$"
+                    let-index="index"
+                >
+                </ng-template>
+            </ng-select>
+        </div>
+        </div>
+      </div>
+      <div class="submit-btn">
+        <button type="button" class="a-button a-button--primary -without-icon" (click)="submit()">
+          <div class="a-button__label">Submit</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

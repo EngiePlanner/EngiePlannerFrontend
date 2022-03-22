@@ -1,3 +1,4 @@
+import { PredecessorsComponent } from './tasks/predecessors/predecessors.component';
 import { RoleGuard } from './guards/role.guard';
 import { MessageBarComponent } from './shared/message-bar/message-bar.component';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
@@ -24,6 +25,7 @@ import { AvailabilityComponent } from './availability/availability.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { SchedulingComponent } from './scheduling/scheduling.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { AuthenticationGuard } from './guards/authentication.guard';
       EditTaskComponent,
       MessageBarComponent,
       AvailabilityComponent,
-      SchedulingComponent
+      SchedulingComponent,
+      PredecessorsComponent
    ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { AuthenticationGuard } from './guards/authentication.guard';
     HttpClientModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   providers: [
     AuthenticationService,
