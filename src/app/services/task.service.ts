@@ -20,6 +20,10 @@ export class TaskService {
     return this.http.get<ITask[]>(this.url + 'GetAllTasks');
   }
 
+  getTasksWithPlannedDateLowerThanGivenDate(date: Date): Observable<ITask[]> {
+    return this.http.get<ITask[]>(this.url + 'GetTasksWithPlannedDateLowerThanGivenDate?date=' + date);
+  }
+
   createTask(task: ITask): Observable<ITask> {
     const body = JSON.stringify(task);
     return this.http.post<ITask>(this.url + 'CreateTask', body, this.options);
@@ -28,6 +32,11 @@ export class TaskService {
   updateTask(task: ITask): Observable<ITask> {
     const body = JSON.stringify(task);
     return this.http.put<ITask>(this.url + 'UpdateTask', body, this.options);
+  }
+
+  addPredecessors(taskId: number, predecessorsId: number[]): Observable<any> {
+    const body = JSON.stringify(predecessorsId);
+    return this.http.put<any>(this.url + 'AddPredecessors', body, this.options);
   }
 
   deleteTask(taskId: number): Observable<ITask> {

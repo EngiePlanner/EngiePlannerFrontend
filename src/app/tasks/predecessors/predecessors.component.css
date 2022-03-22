@@ -1,0 +1,137 @@
+.container {
+    position: relative;
+    height: 90%;
+    overflow-y: auto;
+}
+
+.a-box {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    height: 35rem;
+    width: 60rem;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.content {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.input-row {
+    display: flex;
+    width: 50rem;
+    justify-content: space-between;
+}
+
+.input-group {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 1rem;
+    margin-top: 1rem;
+}
+
+.field-name {
+    text-align: left;
+}
+
+.a-button {
+    width: 15rem;
+}
+
+.submit-btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.a-dropdown_multiple {
+    width: 100%;
+    /* margin-left: auto; */
+}
+.a-dropdown_multiple .ng-select .ng-select-container {
+    cursor: pointer;
+}
+
+.ng-select {
+    width: 100%;
+    height: 3rem;
+    border-style: none;
+    appearance: none;
+    background-color: var(--bosch-gray-85);
+    font-weight: 700;
+    white-space: nowrap;
+}
+.ng-select.ng-select-opened .ng-select-container
+{
+    height: 3rem;
+}
+
+.ng-select .ng-select-container .ng-arrow-wrapper .ng-arrow {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-top: 0.1rem solid var(--bosch-black);
+    border-right: 0.1rem solid var(--bosch-black);
+    margin-bottom: 0.3rem;
+    transform: rotate(135deg);
+}
+.ng-select-opened .ng-select-container .ng-arrow-wrapper .ng-arrow {
+    margin: 0;
+    transform: rotate(315deg);
+}
+.ng-select .ng-clear-wrapper, .ng-select .ng-arrow-wrapper {
+    align-self: center;
+    padding: 0.5rem;
+}
+.ng-select-container input {
+    height: 100%;
+}
+.ng-value-container {
+    align-items: center;
+}
+
+.ng-value-label {
+    margin-left: 3rem;
+}
+.ng-dropdown-panel {
+    box-shadow: -0.02rem 0.1rem 0.4rem var(--shadow-fill);
+}
+.ng-option, .ng-optgroup {
+    background-color: var(--bosch-white);
+}
+.ng-option > div, .ng-optgroup > div {
+    margin: 0.25rem 0.5rem;
+}
+
+.ng-dropdown-panel-items .select-multiple {
+    position: relative;
+    width: 100rem;
+ }
+
+ .a-text-field input {
+    padding: 0 0.2rem;
+}
+
+.a-checkbox label {
+    cursor: pointer;
+}
+
+.process-area__selector {
+    display: inline-flex;
+    width: 12.5rem;
+    padding-top: 4rem;
+    padding-left: 12rem;
+}

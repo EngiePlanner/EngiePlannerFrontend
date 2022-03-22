@@ -8,3 +8,8 @@
     margin-top: 0;
     z-index: 1;
 }
+
+.a-tab-navigation__label {
+    margin-left: 0.5rem;
+    font-size: 1rem;
+}
