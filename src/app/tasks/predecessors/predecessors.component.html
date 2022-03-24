@@ -28,8 +28,9 @@
                 [selectableGroupAsModel]="false"
                 [searchable]="false"
                 [closeOnSelect]="false"
+                bindValue="id"
                 [(ngModel)]="selectedPredecessors"
-                (change)="onChange()"
+                notFoundText="No available tasks"
             >
                 <ng-template ng-multi-label-tmp let-clear="clear">
                 </ng-template>

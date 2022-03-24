@@ -12,3 +12,78 @@ body {
 svg {
     vertical-align: unset !important;
 }
+
+.ng-select {
+    width: 100%;
+    height: 3rem;
+    border-style: none;
+    appearance: none;
+    background-color: var(--bosch-gray-90);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.ng-select:hover {
+   cursor: pointer;
+   background-color: var(--bosch-gray-75);
+}
+
+.ng-select.ng-select-opened .ng-select-container
+{
+    height: 3rem;
+}
+
+.ng-select .ng-select-container .ng-arrow-wrapper .ng-arrow {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-top: 0.1rem solid var(--bosch-black);
+    border-right: 0.1rem solid var(--bosch-black);
+    margin-bottom: 0.3rem;
+    margin-right: 0.3rem;
+    transform: rotate(135deg);
+}
+.ng-select-opened .ng-select-container .ng-arrow-wrapper .ng-arrow {
+    margin: 0;
+    margin-right: 0.3rem;
+    transform: rotate(315deg);
+}
+.ng-select .ng-clear-wrapper, .ng-select .ng-arrow-wrapper {
+    align-self: center;
+    padding: 0.9rem;
+}
+.ng-select-container input {
+    height: 100%;
+}
+.ng-value-container {
+    align-items: center;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
+    text-align: left;
+}
+
+.ng-value-label {
+    margin-left: 3rem;
+}
+.ng-dropdown-panel {
+    box-shadow: -0.02rem 0.1rem 0.4rem var(--shadow-fill);
+}
+.ng-option, .ng-optgroup {
+    background-color: var(--bosch-white);
+}
+.ng-option > div, .ng-optgroup > div {
+    margin: 0.25rem 0.5rem;
+}
+
+.ng-dropdown-panel-items .select-multiple {
+    position: relative;
+    width: 100rem;
+ }
+
+.a-checkbox label {
+    cursor: pointer;
+}
+
+.ng-select .ng-dropdown-panel {
+    position: relative;
+}
