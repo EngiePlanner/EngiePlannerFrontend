@@ -15,7 +15,7 @@ export class PredecessorsComponent implements OnInit {
   tasks: ITask[] = [] as ITask[];
   potentialPredecessors: ITask[] = [] as ITask[];
   selectedTask: ITask | undefined;
-  selectedPredecessors: ITask[] = [] as ITask[];
+  selectedPredecessors: number[] | undefined;
 
   constructor(private taskService: TaskService) { }
 
@@ -34,16 +34,15 @@ export class PredecessorsComponent implements OnInit {
     })
   }
 
-  submit() {
-    
-  }
-
   selectTask() {
     this.taskService.getTasksWithPlannedDateLowerThanGivenDate(this.selectedTask?.plannedDate!)
-      .subscribe(tasks => this.potentialPredecessors = tasks);
+      .subscribe(tasks => {
+        this.potentialPredecessors = tasks;
+        this.selectedPredecessors = this.selectedTask?.predecessors!.map(({id}) => id! );
+      });
   }
 
-  onChange() {
-    console.log(this.selectedPredecessors)
+  submit() {
+    this.taskService.addPredecessors(this.selectedTask?.id!, this.selectedPredecessors!).subscribe();
   }
 }

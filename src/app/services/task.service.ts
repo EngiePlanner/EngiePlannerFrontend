@@ -36,7 +36,7 @@ export class TaskService {
 
   addPredecessors(taskId: number, predecessorsId: number[]): Observable<any> {
     const body = JSON.stringify(predecessorsId);
-    return this.http.put<any>(this.url + 'AddPredecessors', body, this.options);
+    return this.http.put<any>(this.url + 'AddPredecessors?taskId=' + taskId, body, this.options);
   }
 
   deleteTask(taskId: number): Observable<ITask> {

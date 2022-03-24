@@ -38,8 +38,7 @@ export class SchedulingComponent implements OnInit {
   }
 
   schedule() {
-    console.log(this.selectedTasks);
-    //this.aspSolverService.invokeAspSolver(this.selectedTasks).subscribe();
+    this.aspSolverService.invokeAspSolver(this.selectedTasks).subscribe();
   }
 
   checkUncheckAll() {
