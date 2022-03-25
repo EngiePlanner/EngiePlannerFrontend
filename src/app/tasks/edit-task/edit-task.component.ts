@@ -30,7 +30,7 @@ export class EditTaskComponent implements OnInit {
   users: IUser[] = [] as IUser[];
   tasks: ITask[] = [] as ITask[];
   subteams = ['s1', 's2', 's3', 'S1'];
-  selectedTask: ITask | undefined;
+  selectedTask: ITask | null = null;
   pipe = new DatePipe('en-US');
   deleteButtonClicked = false;
 
@@ -65,8 +65,22 @@ export class EditTaskComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.userService.getAllUsers().subscribe(users => this.users = users)
-    this.taskService.getAllTasks().subscribe(tasks => this.tasks = tasks)
+    this.userService.getAllUsers().subscribe(users => {
+      if (users) {
+        this.users = users;
+      }
+      else {
+        this.messageBar.addErrorTimeOut('No employees found!');
+      }
+    });
+    this.taskService.getAllTasks().subscribe(tasks => {
+      if (tasks) {
+        this.tasks = tasks;
+      }
+      else {
+        this.messageBar.addErrorTimeOut('No tasks found!')
+      }
+    });
   }
 
   selectTask() {
@@ -101,7 +115,7 @@ export class EditTaskComponent implements OnInit {
     this.taskService.updateTask(task).subscribe(() => {
       this.messageBar.addSuccessTimeOut('Task updated successfully!');
       this.form.reset();
-      this.selectedTask = undefined;
+      this.selectedTask = null;
       this.loadData();
     },
     error => {
@@ -115,8 +129,11 @@ export class EditTaskComponent implements OnInit {
     this.taskService.deleteTask(this.selectedTask?.id!).subscribe(() => {
       this.messageBar.addSuccessTimeOut('Task deleted successfully!');
       this.form.reset()
-      this.selectedTask = undefined;
+      this.selectedTask = null;
       this.loadData()
+    },
+    _ => {
+      this.messageBar.addErrorTimeOut('Error on deleting task!')
     });
 
   }

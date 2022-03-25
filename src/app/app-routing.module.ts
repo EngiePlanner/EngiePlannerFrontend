@@ -27,7 +27,10 @@ export const routes: Routes = [
   {
     path: 'tasks',
     component: HomeTaskComponent,
-    canActivate: [AuthenticationGuard]
+    canActivate: [AuthenticationGuard, RoleGuard],
+    data: {
+      expectedRoles: ['Admin', 'Leader']
+    }
   },
   {
     path: 'availability',

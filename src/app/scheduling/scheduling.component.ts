@@ -1,7 +1,8 @@
 import { AspSolverService } from './../services/asp-solver.service';
 import { TaskService } from 'src/app/services/task.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ITask } from '../models/task.model';
+import { MessageBarComponent } from '../shared/message-bar/message-bar.component';
 
 @Component({
   selector: 'app-scheduling',
@@ -12,6 +13,7 @@ export class SchedulingComponent implements OnInit {
   tasks: ITask[] = [] as ITask[];
   selectedTasks: ITask[] = [] as ITask[];
   isMasterSel = false;
+  @ViewChild('messageBar') messageBar = {} as MessageBarComponent;
 
   constructor(private taskService: TaskService, private aspSolverService: AspSolverService) { }
 
@@ -22,7 +24,12 @@ export class SchedulingComponent implements OnInit {
 
   loadData(): void {
     this.taskService.getAllTasks().subscribe(tasks => {
-      this.tasks = tasks
+      if (tasks) {
+        this.tasks = tasks
+      }
+      else {
+        this.messageBar.addErrorTimeOut('No tasks found!');
+      }
     });
   }
 
@@ -38,7 +45,12 @@ export class SchedulingComponent implements OnInit {
   }
 
   schedule() {
-    this.aspSolverService.invokeAspSolver(this.selectedTasks).subscribe();
+    this.aspSolverService.invokeAspSolver(this.selectedTasks).subscribe(response => {
+      this.messageBar.addSuccessTimeOut('Tasks scheduled successfully!')
+    },
+    _ => {
+      this.messageBar.addErrorTimeOut('Error on scheduling tasks!')
+    });
   }
 
   checkUncheckAll() {

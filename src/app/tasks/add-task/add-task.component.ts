@@ -27,7 +27,6 @@ export class AddTaskComponent implements OnInit {
     employee: new FormControl('', Validators.required),
   });
   users: IUser[] = [] as IUser[];
-  tasks: ITask[] = [] as ITask[];
   availableTasks: ITask[] = [] as ITask[];
   subteams = ['s1', 's2', 's3'];
 
@@ -62,8 +61,14 @@ export class AddTaskComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.userService.getAllUsers().subscribe(users => this.users = users);
-    this.taskService.getAllTasks().subscribe(tasks => this.tasks = tasks);
+    this.userService.getAllUsers().subscribe(users => {
+      if (users) {
+        this.users = users
+      }
+      else {
+        this.messageBar.addErrorTimeOut('No employees found!')
+      }
+    });
   }
 
   submit() {

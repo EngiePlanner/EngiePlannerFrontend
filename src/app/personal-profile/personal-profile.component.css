@@ -4,6 +4,10 @@
     height: 3rem;
 }
 
+.a-text-field input{
+  background-color: var(--bosch-white);
+}
+
 .body-wrapper {
     padding: 2rem;
     padding-top: 0rem;
