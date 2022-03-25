@@ -1,0 +1,43 @@
+.container {
+  position: relative;
+  height: 90%;
+}
+
+.a-box {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 15%);
+  height: 35rem;
+  width: 60rem;
+  padding: 2rem;
+  margin-top: 4rem;
+}
+
+.content {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  text-align: center;
+  width: 100%;
+}
+
+.image {
+  position: absolute;
+  transform: translate(-50%, 50%);
+}
+
+.home-image {
+  width: 40rem;
+}
+
+.text {
+  margin-top: 1.5rem;
+  width: 60%;
+  position: absolute;
+  transform: translate(-50%);
+}
+
+h5 {
+  display: inline;
+}

@@ -23,11 +23,6 @@ export class SidebarComponent implements OnInit {
         Route: '/home'
       },
       {
-        Title: 'Tasks',
-        IconClass: 'a-icon icon-tasks',
-        Route: '/tasks'
-      },
-      {
         Title: 'Availability',
         IconClass: 'a-icon boschicon-bosch-ic-calendar-clock icon-availability',
         Route: '/availability'
@@ -37,10 +32,15 @@ export class SidebarComponent implements OnInit {
     if (this.autenticationService.getRole() != 'Associate') {
       this.sidebarElements.push(
         {
+          Title: 'Tasks',
+          IconClass: 'a-icon icon-tasks',
+          Route: '/tasks'
+        },
+        {
           Title: 'Schedule',
           IconClass: 'a-icon boschicon-bosch-ic-timeline-settings icon-schedule',
           Route: '/schedule'
-        }
+        },
       );
     }
   }

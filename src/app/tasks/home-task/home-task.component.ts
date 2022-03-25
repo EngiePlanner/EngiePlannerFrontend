@@ -5,11 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home-task.component.html',
   styleUrls: ['./home-task.component.css']
 })
-export class HomeTaskComponent implements OnInit {
+export class HomeTaskComponent {
   optionMenu: string = 'AddTask';
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

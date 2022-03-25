@@ -44,20 +44,31 @@ export class AvailabilityComponent implements OnInit {
 
   loadData() {
     this.userService.getAllWeeksFromCurrentYear().subscribe(weeks => {
-      this.weeks = weeks;
+      if (weeks) {
+        this.weeks = weeks;
+      }
+      else {
+        this.messageBar.addErrorTimeOut('No weeks found!');
+      }
     })
   }
 
   onWeekClick(week: IWeek) {
     this.userService.getAvailabilityByFromDateAndUserUsername(week.firstDay, this.authenticationService.getUsername()).subscribe(availability => {
-      this.availability = availability;
-      const fromDate = this.pipe.transform(this.availability.fromDate, "yyyy-MM-dd");
-      const toDate = this.pipe.transform(this.availability.toDate, "yyyy-MM-dd");
-      this.form.patchValue({
-        fromDate: fromDate,
-        toDate: toDate,
-        availableHours: this.availability.availableHours
-      })
+      if (availability) {
+        this.availability = availability;
+        const fromDate = this.pipe.transform(this.availability.fromDate, "yyyy-MM-dd");
+        const toDate = this.pipe.transform(this.availability.toDate, "yyyy-MM-dd");
+        this.form.patchValue({
+          fromDate: fromDate,
+          toDate: toDate,
+          availableHours: this.availability.availableHours
+        });
+      }
+      else {
+        this.messageBar.addErrorTimeOut('Availability not found!');
+      }
+
     })
   }
 
