@@ -7,14 +7,15 @@
 .box {
     position: fixed;
     padding: 1rem;
-    margin-top: 2rem;
+    padding-top: 0;
+    margin-top: 3rem;
     left: 50%;
     transform: translate(-50%);
     width: 50%;
-    height: 19rem;
+    height: 18rem;
     overflow-y: scroll;
     text-align: center;
-    scrollbar-color: var(--bosch-blue-50) #e6e4e4;
+    scrollbar-color: gray #e6e4e4;
     scrollbar-width: thin;
 }
 
@@ -25,11 +26,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--bosch-blue-50);
+  background: gray;
 }
 
 ::-webkit-scrollbar-thumb:active {
-    background: var(--bosch-blue-50);
+    background: rgb(173, 173, 173);
   }
 
 ::-webkit-scrollbar-corner {

@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../services/authentication.service';
 import { TaskValidator } from './../../validators/task-validator';
 import { ITask } from './../../models/task.model';
 import { IUser } from './../../models/user.model';
@@ -30,7 +31,7 @@ export class AddTaskComponent implements OnInit {
   availableTasks: ITask[] = [] as ITask[];
   subteams = ['s1', 's2', 's3'];
 
-  constructor(private taskService: TaskService, private userService: UserService, private taskValidator: TaskValidator) { }
+  constructor(private taskService: TaskService, private userService: UserService, private taskValidator: TaskValidator, private authenticationService: AuthenticationService) { }
 
   get name(): FormControl {
     return this.form.get('name') as FormControl
@@ -61,14 +62,26 @@ export class AddTaskComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.userService.getAllUsers().subscribe(users => {
-      if (users) {
-        this.users = users
-      }
-      else {
-        this.messageBar.addErrorTimeOut('No employees found!')
-      }
-    });
+    if (this.authenticationService.getRole() == 'Admin') {
+      this.userService.getAllUsers().subscribe(users => {
+        if (users) {
+          this.users = users
+        }
+        else {
+          this.messageBar.addErrorTimeOut('No employees found!')
+        }
+      });
+    }
+    else {
+      this.userService.getUsersByLeaderGroup(this.authenticationService.getUsername()).subscribe(users => {
+        if (users) {
+          this.users = users
+        }
+        else {
+          this.messageBar.addErrorTimeOut('No employees found!')
+        }
+      });
+    }
   }
 
   submit() {
@@ -78,7 +91,8 @@ export class AddTaskComponent implements OnInit {
       plannedDate: this.plannedDate.value,
       subteam: this.subteam.value,
       duration: this.duration.value,
-      employeeUsername: this.employee.value,
+      responsibleUsername: this.employee.value,
+      ownerUsername: this.authenticationService.getUsername()
     } as ITask
 
     this.taskService.createTask(task).subscribe(() => {

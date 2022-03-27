@@ -15,8 +15,10 @@ import { DatePipe } from '@angular/common';
 export class AvailabilityComponent implements OnInit {
   @ViewChild('messageBar') messageBar = {} as MessageBarComponent;
   weeks: IWeek[] = [] as IWeek[];
+  availableWeeks: IWeek[] = [] as IWeek[];
   availability: IAvailability | undefined;
   pipe = new DatePipe('en-US');
+  currentWeekNumber: number | undefined;
 
   form = new FormGroup ({
     fromDate: new FormControl('', Validators.required),
@@ -38,14 +40,16 @@ export class AvailabilityComponent implements OnInit {
 
   constructor(private userService: UserService, private authenticationService: AuthenticationService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadData();
   }
 
-  loadData() {
+  loadData(): void {
     this.userService.getAllWeeksFromCurrentYear().subscribe(weeks => {
       if (weeks) {
         this.weeks = weeks;
+        this.currentWeekNumber = this.getWeekNumber();
+        this.availableWeeks = this.weeks.filter(x => x.number >= this.currentWeekNumber!);
       }
       else {
         this.messageBar.addErrorTimeOut('No weeks found!');
@@ -53,7 +57,14 @@ export class AvailabilityComponent implements OnInit {
     })
   }
 
-  onWeekClick(week: IWeek) {
+  getWeekNumber(): number {
+    let now = new Date();
+    let onejan = new Date(now.getFullYear(), 0, 1);
+    let week = Math.ceil((((now.getTime() - onejan.getTime()) / 86400000) + onejan.getDay() + 1) / 7);
+    return week;
+  }
+
+  onWeekClick(week: IWeek): void {
     this.userService.getAvailabilityByFromDateAndUserUsername(week.firstDay, this.authenticationService.getUsername()).subscribe(availability => {
       if (availability) {
         this.availability = availability;
@@ -68,11 +79,10 @@ export class AvailabilityComponent implements OnInit {
       else {
         this.messageBar.addErrorTimeOut('Availability not found!');
       }
-
     })
   }
 
-  update() {
+  update(): void {
     const availability = {
       id: this.availability?.id,
       userUsername: this.authenticationService.getUsername(),
