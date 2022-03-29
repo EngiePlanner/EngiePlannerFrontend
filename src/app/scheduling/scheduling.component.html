@@ -1,4 +1,4 @@
-<app-message-bar></app-message-bar>
+<app-message-bar #messageBar></app-message-bar>
 <div class="container">
   <div class="antet">
     <div class="title">
@@ -27,7 +27,7 @@
   </div>
   <div class="submit-btn">
     <button type="button" class="a-button a-button--primary -without-icon"
-      (click)="schedule()">
+      (click)="schedule()" [disabled]="isDisabled">
       <div class="a-button__label">Schedule</div>
     </button>
   </div>
