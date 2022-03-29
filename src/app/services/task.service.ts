@@ -20,8 +20,16 @@ export class TaskService {
     return this.http.get<ITask[]>(this.url + 'GetAllTasks');
   }
 
+  getTasksByOwnerUsername(ownerUsername: string): Observable<ITask[]> {
+    return this.http.get<ITask[]>(this.url + 'GetTasksByOwnerUsername?ownerUsername=' + ownerUsername);
+  }
+
   getTasksWithPlannedDateLowerThanGivenDate(date: Date): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.url + 'GetTasksWithPlannedDateLowerThanGivenDate?date=' + date);
+  }
+
+  getTasksByOwnerUsernameWithPlannedDateLowerThanGivenDate(ownerUsername: string, date: Date): Observable<ITask[]> {
+    return this.http.get<ITask[]>(this.url + 'GetTasksByOwnerUsernameWithPlannedDateLowerThanGivenDate?ownerUsername=' + ownerUsername + '&date=' + date);
   }
 
   createTask(task: ITask): Observable<ITask> {

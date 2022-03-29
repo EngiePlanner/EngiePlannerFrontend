@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { ITask } from 'src/app/models/task.model';
 import { DatePipe } from '@angular/common';
 import { MessageBarComponent } from 'src/app/shared/message-bar/message-bar.component';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -34,7 +35,7 @@ export class EditTaskComponent implements OnInit {
   pipe = new DatePipe('en-US');
   deleteButtonClicked = false;
 
-  constructor(private taskService: TaskService, private userService: UserService, private taskValidator: TaskValidator) { }
+  constructor(private taskService: TaskService, private userService: UserService, private taskValidator: TaskValidator, private authenticationService: AuthenticationService) { }
 
   get name(): FormControl {
     return this.form.get('name') as FormControl
@@ -65,22 +66,45 @@ export class EditTaskComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.userService.getAllUsers().subscribe(users => {
-      if (users) {
-        this.users = users;
-      }
-      else {
-        this.messageBar.addErrorTimeOut('No employees found!');
-      }
-    });
-    this.taskService.getAllTasks().subscribe(tasks => {
-      if (tasks) {
-        this.tasks = tasks;
-      }
-      else {
-        this.messageBar.addErrorTimeOut('No tasks found!')
-      }
-    });
+    const loggedUserUsername = this.authenticationService.getUsername();
+    if (this.authenticationService.getRole() == 'Admin') {
+      this.userService.getAllUsers().subscribe(users => {
+        if (users) {
+          this.users = users
+        }
+        else {
+          this.messageBar.addErrorTimeOut('No employees found!')
+        }
+      });
+
+      this.taskService.getAllTasks().subscribe(tasks => {
+        if (tasks) {
+          this.tasks = tasks;
+        }
+        else {
+          this.messageBar.addErrorTimeOut('No tasks found!')
+        }
+      });
+    }
+    else {
+      this.userService.getUsersByLeaderGroup(loggedUserUsername).subscribe(users => {
+        if (users) {
+          this.users = users
+        }
+        else {
+          this.messageBar.addErrorTimeOut('No employees found!')
+        }
+      });
+
+      this.taskService.getTasksByOwnerUsername(loggedUserUsername).subscribe(tasks => {
+        if (tasks) {
+          this.tasks = tasks;
+        }
+        else {
+          this.messageBar.addErrorTimeOut('No tasks found!')
+        }
+      });
+    }
   }
 
   selectTask() {
@@ -92,7 +116,7 @@ export class EditTaskComponent implements OnInit {
       plannedDate: plannedDate,
       subteam: this.selectedTask!.subteam,
       duration: this.selectedTask!.duration,
-      employee: this.selectedTask!.employeeUsername
+      employee: this.selectedTask!.responsibleUsername
     })
   }
 
@@ -109,7 +133,8 @@ export class EditTaskComponent implements OnInit {
       plannedDate: this.plannedDate.value,
       subteam: this.subteam.value,
       duration: this.duration.value,
-      employeeUsername: this.employee.value
+      responsibleUsername: this.employee.value,
+      ownerUsername: this.selectedTask?.ownerUsername
     } as ITask
 
     this.taskService.updateTask(task).subscribe(() => {

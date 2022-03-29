@@ -6,8 +6,10 @@ export interface ITask {
     plannedDate: Date;
     subteam: string;
     duration: number;
-    employeeUsername: string;
-    employee: IUser;
     predecessors: ITask[];
-    isSelected?: boolean
+    responsibleUsername: string;
+    responsibleDisplayName: string;
+    ownerUsername: string;
+    endDate: Date;
+    isSelected?: boolean;
 }

@@ -2,8 +2,8 @@
 <div class="container">
   <div class="antent">Weeks</div>
   <div class="box">
-    <div class="weeks a-box -floating" *ngFor="let week of weeks" (click)="onWeekClick(week)">
-      <div class="title">Week {{week.number}}</div>
+    <div class="weeks a-box -floating" *ngFor="let week of availableWeeks" (click)="onWeekClick(week)">
+      <div class="title">CW {{week.number}}</div>
       <div class="dates">
         <div>From: {{week.firstDay | date}}</div>
         <div>To: {{week.lastDay | date}}</div>
@@ -15,7 +15,7 @@
       <div class="input-row">
         <div class="input-group">
           <div>
-            <div class="field-name">From Date:</div>
+            <div class="field-name">From:</div>
             <div class="a-text-field">
               <input formControlName="fromDate" type="date" placeholder="dd/MM/yyyy" readonly />
             </div>
@@ -25,7 +25,7 @@
       <div class="input-row">
         <div class="input-group">
           <div>
-            <div class="field-name">To Date:</div>
+            <div class="field-name">To:</div>
             <div class="a-text-field">
               <input formControlName="toDate" type="date" readonly />
             </div>
