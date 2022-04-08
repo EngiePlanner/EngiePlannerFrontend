@@ -72,4 +72,9 @@ export class PredecessorsComponent implements OnInit {
       this.messageBar.addErrorTimeOut('Error in adding predecessors!')
     });
   }
+
+  customSearch(term: string, item: ITask) {
+    term = term.toLocaleLowerCase();
+    return item.name.toLocaleLowerCase().indexOf(term) > -1;
+  }
 }

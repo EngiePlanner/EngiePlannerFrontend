@@ -26,9 +26,10 @@
                 groupBy="name"
                 [selectableGroup]="true"
                 [selectableGroupAsModel]="false"
-                [searchable]="false"
+                [searchFn]="customSearch"
                 [closeOnSelect]="false"
                 bindValue="id"
+                bindLabel="name"
                 [(ngModel)]="selectedPredecessors"
                 notFoundText="No available tasks"
             >
