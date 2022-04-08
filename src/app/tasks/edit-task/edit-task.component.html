@@ -26,7 +26,7 @@
         <div class="input-row">
           <div class="input-group">
             <div>
-              <div class="field-name">Start Date:</div>
+              <div class="field-name">Availability Date:</div>
               <div class="a-text-field">
                 <input formControlName="startDate" id="startDate" type="date"
                   (blur)="validateForm(startDate, 'Start Date')" />
@@ -67,7 +67,7 @@
         <div class="input-row">
           <div class="input-group">
             <div>
-              <div class="field-name">Associate:</div>
+              <div class="field-name">Respnsbile:</div>
               <div class="a-dropdown">
                 <select formControlName="employee" id="employee" (blur)="validateForm(employee, 'Employee')">
                   <option value="{{employee.username}}" *ngFor="let employee of users">
