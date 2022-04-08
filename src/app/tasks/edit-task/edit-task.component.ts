@@ -34,6 +34,7 @@ export class EditTaskComponent implements OnInit {
   selectedTask: ITask | null = null;
   pipe = new DatePipe('en-US');
   deleteButtonClicked = false;
+  placeholder = 'Select task';
 
   constructor(private taskService: TaskService, private userService: UserService, private taskValidator: TaskValidator, private authenticationService: AuthenticationService) { }
 
@@ -108,6 +109,12 @@ export class EditTaskComponent implements OnInit {
   }
 
   selectTask() {
+    if (this.selectTask != null) {
+      this.placeholder = '';
+    } else {
+      this.placeholder = 'Select task'
+    }
+    
     const startDate = this.pipe.transform(this.selectedTask!.startDate, "yyyy-MM-dd");
     const plannedDate = this.pipe.transform(this.selectedTask!.plannedDate, "yyyy-MM-dd");
     this.form.patchValue({
@@ -170,5 +177,9 @@ export class EditTaskComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.taskValidator.clearErrors();
+  }
+
+  clear() {
+    this.placeholder = 'Select task'
   }
 }
