@@ -43,6 +43,14 @@ export class SidebarComponent implements OnInit {
         },
       );
     }
+
+    this.sidebarElements.push(
+      {
+        Title: 'View schedule',
+        IconClass: 'a-icon boschicon-bosch-ic-timeline-view icon-view-schedule',
+        Route: '/show-schedule'
+      }
+    )
   }
 
   closeButtonClicked(): void {

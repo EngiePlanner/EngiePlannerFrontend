@@ -42,8 +42,8 @@ export class EditTaskComponent implements OnInit {
     return this.form.get('name') as FormControl
   }
 
-  get startDate(): FormControl {
-    return this.form.get('startDate') as FormControl
+  get availabilityDate(): FormControl {
+    return this.form.get('availabilityDate') as FormControl
   }
 
   get plannedDate(): FormControl {
@@ -115,7 +115,7 @@ export class EditTaskComponent implements OnInit {
       this.placeholder = 'Select task'
     }
     
-    const startDate = this.pipe.transform(this.selectedTask!.startDate, "yyyy-MM-dd");
+    const startDate = this.pipe.transform(this.selectedTask!.availabilityDate, "yyyy-MM-dd");
     const plannedDate = this.pipe.transform(this.selectedTask!.plannedDate, "yyyy-MM-dd");
     this.form.patchValue({
       name: this.selectedTask!.name,
@@ -136,7 +136,7 @@ export class EditTaskComponent implements OnInit {
     const task = {
       id: this.selectedTask?.id,
       name: this.name.value,
-      startDate: this.startDate.value,
+      availabilityDate: this.availabilityDate.value,
       plannedDate: this.plannedDate.value,
       subteam: this.subteam.value,
       duration: this.duration.value,

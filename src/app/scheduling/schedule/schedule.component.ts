@@ -1,21 +1,23 @@
-import { AuthenticationService } from './../services/authentication.service';
-import { AspSolverService } from './../services/asp-solver.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { AspSolverService } from '../../services/asp-solver.service';
 import { TaskService } from 'src/app/services/task.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ITask } from '../models/task.model';
-import { MessageBarComponent } from '../shared/message-bar/message-bar.component';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ITask } from '../../models/task.model';
+import { MessageBarComponent } from '../../shared/message-bar/message-bar.component';
 
 @Component({
-  selector: 'app-scheduling',
-  templateUrl: './scheduling.component.html',
-  styleUrls: ['./scheduling.component.css']
+  selector: 'app-schedule',
+  templateUrl: './schedule.component.html',
+  styleUrls: ['./schedule.component.css']
 })
-export class SchedulingComponent implements OnInit {
+export class ScheduleComponent implements OnInit {
   tasks: ITask[] = [] as ITask[];
-  scheduledTasks: ITask[] = [] as ITask[];
+  @Input() scheduledTasks: ITask[] = [] as ITask[];
+  updatedTask: ITask | undefined;
   selectedTasks: ITask[] = [] as ITask[];
   isMasterSel = false;
   isDisabled = true;
+  isScheduled = false;
   @ViewChild('messageBar') messageBar = {} as MessageBarComponent;
 
   constructor(private taskService: TaskService, private aspSolverService: AspSolverService, private authenticationService: AuthenticationService) { }
@@ -27,7 +29,7 @@ export class SchedulingComponent implements OnInit {
 
   loadData(): void {
     if (this.authenticationService.getRole() == 'Admin') {
-      this.taskService.getUnplannedTasks().subscribe(tasks => {
+      this.taskService.getUnscheduledTasks().subscribe(tasks => {
         if (tasks) {
           this.tasks = tasks
         }
@@ -37,7 +39,7 @@ export class SchedulingComponent implements OnInit {
       });
     }
     else {
-      this.taskService.getUnppannedTasksByOwnerUsername(this.authenticationService.getUsername()).subscribe(tasks => {
+      this.taskService.getUnscheduledTasksByOwnerUsername(this.authenticationService.getUsername()).subscribe(tasks => {
         if (tasks) {
           this.tasks = tasks
         }
@@ -63,6 +65,7 @@ export class SchedulingComponent implements OnInit {
     this.aspSolverService.invokeAspSolver(this.selectedTasks).subscribe(response => {
       this.scheduledTasks = response;
       this.messageBar.addSuccessTimeOut('Tasks scheduled successfully!')
+      this.isScheduled = true;
     },
     _ => {
       this.messageBar.addErrorTimeOut('Error on scheduling tasks!')
@@ -96,5 +99,16 @@ export class SchedulingComponent implements OnInit {
     else {
       this.isDisabled = false;
     }
+  }
+
+  saveSchedule() {
+    this.taskService.updateTasks(this.scheduledTasks).subscribe(() => {
+      this.messageBar.addSuccessTimeOut('Schedule saved successfully!');
+    },
+    error => {
+      if (error.status == 400) {
+        this.messageBar.addErrorTimeOut(error.error);
+      }
+    });
   }
 }

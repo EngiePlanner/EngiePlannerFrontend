@@ -1,3 +1,5 @@
+import { GanttChartComponent } from './scheduling/gantt-chart/gantt-chart.component';
+import { ShowScheduleComponent } from './scheduling/show-schedule/show-schedule.component';
 import { PredecessorsComponent } from './tasks/predecessors/predecessors.component';
 import { RoleGuard } from './guards/role.guard';
 import { MessageBarComponent } from './shared/message-bar/message-bar.component';
@@ -23,7 +25,7 @@ import { PersonalProfileComponent } from './personal-profile/personal-profile.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AvailabilityComponent } from './availability/availability.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { SchedulingComponent } from './scheduling/scheduling.component';
+import { ScheduleComponent } from './scheduling/schedule/schedule.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -42,8 +44,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
       EditTaskComponent,
       MessageBarComponent,
       AvailabilityComponent,
-      SchedulingComponent,
-      PredecessorsComponent
+      ScheduleComponent,
+      PredecessorsComponent,
+      ShowScheduleComponent,
+      GanttChartComponent
    ],
   imports: [
     BrowserModule,
