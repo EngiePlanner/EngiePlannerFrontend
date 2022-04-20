@@ -21,7 +21,7 @@ export class AddTaskComponent implements OnInit {
 
   form = new FormGroup ({
     name: new FormControl('', Validators.required),
-    startDate: new FormControl('', Validators.required),
+    availabilityDate: new FormControl('', Validators.required),
     plannedDate: new FormControl('', Validators.required),
     subteam: new FormControl('', Validators.required),
     duration: new FormControl('', Validators.required),

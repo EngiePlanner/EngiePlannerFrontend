@@ -3,6 +3,7 @@
     display: inline-block;
     width: 100%;
     height: 100%;
+    background-color: var(--bosch-white);
   }
   
   .gantt-container gantt-chart {
@@ -18,4 +19,9 @@
     justify-content: center;
     margin-top: 2.5rem;
     margin-left: 2rem;
+  }
+
+  .not-found {
+    margin-left: 10rem;
+    margin-top: 5rem;
   }

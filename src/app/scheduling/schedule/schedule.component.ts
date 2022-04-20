@@ -1,3 +1,4 @@
+import { LoadingScreenService } from './../../services/loading-screen.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { AspSolverService } from '../../services/asp-solver.service';
 import { TaskService } from 'src/app/services/task.service';
@@ -18,13 +19,18 @@ export class ScheduleComponent implements OnInit {
   isMasterSel = false;
   isDisabled = true;
   isScheduled = false;
+  tasksFound = true;
   @ViewChild('messageBar') messageBar = {} as MessageBarComponent;
 
-  constructor(private taskService: TaskService, private aspSolverService: AspSolverService, private authenticationService: AuthenticationService) { }
+  constructor(private taskService: TaskService, 
+    private aspSolverService: AspSolverService, 
+    private authenticationService: AuthenticationService,
+    private loadingScreenService: LoadingScreenService) { }
 
   ngOnInit() {
     this.loadData();
     this.getCheckedItemList();
+    this.getScheduledTasks();
   }
 
   loadData(): void {
@@ -32,9 +38,10 @@ export class ScheduleComponent implements OnInit {
       this.taskService.getUnscheduledTasks().subscribe(tasks => {
         if (tasks) {
           this.tasks = tasks
+          this.tasksFound = true;
         }
         else {
-          this.messageBar.addErrorTimeOut('No tasks found!');
+          this.tasksFound = false;
         }
       });
     }
@@ -62,14 +69,35 @@ export class ScheduleComponent implements OnInit {
   }
 
   schedule() {
+    this.loadingScreenService.showLoader();
     this.aspSolverService.invokeAspSolver(this.selectedTasks).subscribe(response => {
-      this.scheduledTasks = response;
-      this.messageBar.addSuccessTimeOut('Tasks scheduled successfully!')
+      this.scheduledTasks.push(...response);
+      this.messageBar.addSuccessTimeOut('Tasks scheduled successfully!');
       this.isScheduled = true;
+      this.loadingScreenService.hideLoader();
     },
     _ => {
       this.messageBar.addErrorTimeOut('Error on scheduling tasks!')
+      this.loadingScreenService.hideLoader();
     });
+    
+  }
+
+  getScheduledTasks() {
+    if (this.authenticationService.getRole() == 'Admin') {
+      this.taskService.getScheduledTasks().subscribe(tasks => {
+        if (tasks) {
+          this.scheduledTasks = tasks;
+        }
+      });
+    }
+    else  {
+      this.taskService.getScheduledTasksByOwnerUsername(this.authenticationService.getUsername()).subscribe(tasks => {
+        if (tasks) {
+          this.scheduledTasks = tasks;
+        }
+      });
+    } 
   }
 
   checkUncheckAll() {

@@ -1,3 +1,4 @@
+import { LoadingScreenService } from './../../services/loading-screen.service';
 import { TaskService } from 'src/app/services/task.service';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
@@ -15,8 +16,10 @@ export class ShowScheduleComponent implements OnInit {
   updatedTask: ITask | undefined;
   @ViewChild('messageBar') messageBar = {} as MessageBarComponent;
   loaded = false;
+  tasksFound = true;
 
-  constructor(private authenticationService: AuthenticationService, private taskService: TaskService) { }
+  constructor(private authenticationService: AuthenticationService, 
+    private taskService: TaskService) { }
 
   ngOnInit() {
     this.loadData();
@@ -28,9 +31,10 @@ export class ShowScheduleComponent implements OnInit {
         if (tasks) {
           this.scheduledTasks = tasks;
           this.loaded = true;
+          this.tasksFound = true;
         }
         else {
-          this.messageBar.addErrorTimeOut('No tasks found!');
+          this.tasksFound = false;
         }
       });
     }
@@ -39,9 +43,10 @@ export class ShowScheduleComponent implements OnInit {
         if (tasks) {
           this.scheduledTasks = tasks;
           this.loaded = true;
+          this.tasksFound = true;
         }
         else {
-          this.messageBar.addErrorTimeOut('No tasks found!');
+          this.tasksFound = false;
         }
       });
     } else {
@@ -49,9 +54,10 @@ export class ShowScheduleComponent implements OnInit {
         if (tasks) {
           this.scheduledTasks = tasks;
           this.loaded = true;
+          this.tasksFound = true;
         }
         else {
-          this.messageBar.addErrorTimeOut('No tasks found!');
+          this.tasksFound = false;
         }
       });
     }

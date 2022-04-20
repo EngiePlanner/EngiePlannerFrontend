@@ -1,4 +1,5 @@
 <app-message-bar #messageBar></app-message-bar>
+<div class="not-found" *ngIf="!tasksFound"><h4>No scheduled tasks found!</h4></div>
 <div *ngIf="loaded" class="gantt-container">
     <gantt-chart [scheduledTasks]="scheduledTasks" [(updated)]="updatedTask"></gantt-chart>
     <div class="save-btn">

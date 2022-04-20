@@ -33,7 +33,7 @@ export class GanttChartComponent implements OnInit {
       hoursPerDay: 8,
       hoursPerWeek: 40,
       daysPerMonth: 30
-  });
+    });
 
     gantt.config.xml_date = "%Y-%m-%d %H:%i";
     gantt.config.duration_unit = "hour";
@@ -75,6 +75,35 @@ export class GanttChartComponent implements OnInit {
 
     gantt.init(this.ganttContainer!.nativeElement);
 
+    gantt.attachEvent("onTaskDrag", function(id, mode, task, original){
+      const plannedDate = new Date(task.plannedDate);
+      const availabilityDate = new Date(task.availabilityDate);
+      var diff = original.duration*(1000*60*60);
+
+      if (+task.end_date > +plannedDate){
+        if (plannedDate.getDay() == 6) {
+          diff = diff*2;
+        }
+        if (plannedDate.getDay() == 0) {
+          diff = diff*3;
+        }
+        task.end_date = new Date(+plannedDate - diff);
+        task.start_date = new Date(task.end_date - diff);
+      }
+
+      if (+task.start_date < +availabilityDate){
+        if (availabilityDate.getDay() == 6) {
+          diff = diff*3;
+        }
+        if (availabilityDate.getDay() == 0) {
+          diff = diff*3;
+        }
+        task.start_date = new Date(+availabilityDate + diff);
+        task.end_date = new Date(task.start_date + diff);
+      } 
+      
+    }, "");
+
     gantt.attachEvent("onAfterTaskDrag", (id, mode, e) =>{
       const ganttTask = gantt.getTask(id);
       this.updated = this.scheduledTasks.filter(x => x.id == id)[0];
@@ -92,6 +121,8 @@ export class GanttChartComponent implements OnInit {
     tasks.forEach(x => {
       let stringStartDate = this.pipe.transform(x.startDate, 'yyyy-MM-dd');
       let stringEndDate = this.pipe.transform(x.endDate, 'yyyy-MM-dd');
+      let stringPlannedDate = this.pipe.transform(x.plannedDate, 'yyyy-MM-dd');
+      let stringAvailabilityDate = this.pipe.transform(x.availabilityDate, 'yyyy-MM-dd');
       const ganttTask = {
         id: x.id,
         text: x.name,
@@ -99,7 +130,9 @@ export class GanttChartComponent implements OnInit {
         endDate: stringEndDate,
         duration: x.duration,
         responsible: x.responsibleDisplayName,
-        description: this.generateDescription(x)
+        description: this.generateDescription(x),
+        plannedDate: stringPlannedDate,
+        availabilityDate: stringAvailabilityDate
       } as GanttTask
       this.ganttTasks.push(ganttTask);
     })

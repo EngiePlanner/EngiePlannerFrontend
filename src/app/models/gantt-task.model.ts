@@ -5,4 +5,6 @@ export interface GanttTask {
     text: string;
     duration: number;
     description: string;
+    plannedDate: string;
+    availabilityDate: string;
 }

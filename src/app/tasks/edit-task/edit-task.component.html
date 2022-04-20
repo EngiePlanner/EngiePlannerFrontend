@@ -10,7 +10,7 @@
            notFoundText="No available tasks">
     </ng-select>
   </div>
-  <div class="a-box -floating" *ngIf="selectedTask">
+  <div class="a-box -floating" *ngIf="selectedTask!">
     <div class="content">
       <div class="title">Edit Task</div>
       <form [formGroup]="form">

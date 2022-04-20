@@ -1,5 +1,7 @@
 <app-message-bar #messageBar></app-message-bar>
-<div *ngIf="!isScheduled" class="container">
+<app-loading-screen></app-loading-screen>
+<div class="not-found" *ngIf="!tasksFound"><h4>No unscheduled tasks found!</h4></div>
+<div *ngIf="!isScheduled && tasksFound" class="container">
   <div class="antet">
     <div class="title">
       <h4>Tasks scheduling</h4>

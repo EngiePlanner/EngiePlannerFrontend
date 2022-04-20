@@ -1,3 +1,4 @@
+import { LoadingScreenComponent } from './shared/loading-screen/loading-screen.component';
 import { GanttChartComponent } from './scheduling/gantt-chart/gantt-chart.component';
 import { ShowScheduleComponent } from './scheduling/show-schedule/show-schedule.component';
 import { PredecessorsComponent } from './tasks/predecessors/predecessors.component';
@@ -47,7 +48,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
       ScheduleComponent,
       PredecessorsComponent,
       ShowScheduleComponent,
-      GanttChartComponent
+      GanttChartComponent,
+      LoadingScreenComponent
    ],
   imports: [
     BrowserModule,
