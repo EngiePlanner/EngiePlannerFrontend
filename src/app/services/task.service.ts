@@ -64,7 +64,7 @@ export class TaskService {
 
   updateTasks(tasks: ITask[]): Observable<ITask[]> {
     const body = JSON.stringify(tasks);
-    return this.http.put<ITask[]>(this.url + 'UpdateTasks', body, this.options);
+    return this.http.put<ITask[]>(this.url + 'UpdateTasksAfterSchedule', body, this.options);
   }
 
   addPredecessors(taskId: number, predecessorsId: number[]): Observable<any> {

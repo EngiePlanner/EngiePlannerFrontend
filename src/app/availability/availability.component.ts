@@ -73,7 +73,7 @@ export class AvailabilityComponent implements OnInit {
         this.form.patchValue({
           fromDate: fromDate,
           toDate: toDate,
-          availableHours: this.availability.availableHours
+          availableHours: this.availability.defaultAvailableHours
         });
       }
       else {
@@ -88,7 +88,8 @@ export class AvailabilityComponent implements OnInit {
       userUsername: this.authenticationService.getUsername(),
       fromDate: this.fromDate.value,
       toDate: this.toDate.value,
-      availableHours: this.availableHours.value
+      defaultAvailableHours: this.availableHours.value,
+      unscheduledHours: this.availability?.unscheduledHours
     } as IAvailability
 
     this.userService.updateAvailability(availability).subscribe(() => {

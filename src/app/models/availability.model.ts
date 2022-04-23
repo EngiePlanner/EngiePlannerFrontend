@@ -3,5 +3,6 @@ export interface IAvailability {
   userUsername: string;
   fromDate: Date;
   toDate: Date;
-  availableHours: number;
+  defaultAvailableHours: number;
+  unscheduledHours: number;
 }
