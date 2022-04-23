@@ -9,7 +9,7 @@ export class MessageBarComponent {
   @Input() errors: string[] = [] as string[];
   @Input() successes: string[] = [] as string[];
 
-  addErrorTimeOut(error: string, ms = 7000): void {
+  addErrorTimeOut(error: string, ms = 4000): void {
       this.errors.push(error);
       setTimeout(async () => {
           await this.errorClick(error);

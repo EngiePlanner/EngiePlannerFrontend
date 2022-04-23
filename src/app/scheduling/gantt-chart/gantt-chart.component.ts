@@ -27,7 +27,7 @@ export class GanttChartComponent implements OnInit {
 
   ngOnInit() {
     var formatter = gantt.ext.formatters.durationFormatter({
-      enter: "hour", 
+      enter: "hour",
       store: "hour",
       format: "day",
       hoursPerDay: 8,
@@ -51,7 +51,7 @@ export class GanttChartComponent implements OnInit {
           return "week_end";
       return "";
     };
-    
+
     gantt.templates.timeline_cell_class = function(task, date){
       if(date.getDay() == 0 || date.getDay() == 6)
           return "week_end";
@@ -61,9 +61,9 @@ export class GanttChartComponent implements OnInit {
     gantt.config.columns = [
       {name: "text", label: "Name", tree: false, align: "center", width: 170, resize: true},
       {name: "start_date", label: "Start Date", align: "center", width: 170, resize: false},
-      {name: "duration", label:"Duration(h)", resize: true, align: "center", 
-        template: function(task: any) {            
-            return formatter.format(task.duration);        
+      {name: "duration", label:"Duration(h)", resize: true, align: "center",
+        template: function(task: any) {
+            return formatter.format(task.duration);
         }, width: 100},
     ];
 
@@ -80,8 +80,6 @@ export class GanttChartComponent implements OnInit {
       const availabilityDate = new Date(task.availabilityDate);
       var diff = original.duration*(1000*60*60);
 
-      task.start_date.setHours(0);
-      task.start_date.setMinutes(0);
       if (+task.end_date > +plannedDate){
         if (plannedDate.getDay() == 6) {
           diff = diff*2;
@@ -102,8 +100,8 @@ export class GanttChartComponent implements OnInit {
         }
         task.start_date = new Date(+availabilityDate + diff);
         task.end_date = new Date(task.start_date + diff);
-      } 
-      
+      }
+
     }, "");
 
     gantt.attachEvent("onAfterTaskDrag", (id, mode, e) =>{
@@ -159,7 +157,7 @@ export class GanttChartComponent implements OnInit {
     const description = 'Responsible: ' + task.responsibleDisplayName + '\n' +
       'Availability Date: ' + this.pipe.transform(task.availabilityDate, 'yyyy-MM-dd') + '\n' +
       'Planned Date: ' + this.pipe.transform(task.plannedDate, 'yyyy-MM-dd');
-    
+
     return description
   }
 }
