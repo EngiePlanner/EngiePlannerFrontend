@@ -1,13 +1,8 @@
 <app-message-bar #messageBar [errors]="formErrors"> </app-message-bar>
 <div class="container">
   <div class="select-tasks">
-    <ng-select [items]="tasks"
-           bindLabel="name"
-           [(ngModel)]="selectedTask"
-           (ngModelChange)="selectTask()"
-           (clear)="clear()"
-           [placeholder]="placeholder"
-           notFoundText="No available tasks">
+    <ng-select [items]="tasks" bindLabel="name" [(ngModel)]="selectedTask" (ngModelChange)="selectTask()"
+      (clear)="clear()" [placeholder]="placeholder" notFoundText="No available tasks">
     </ng-select>
   </div>
   <div class="a-box -floating" *ngIf="selectedTask!">
