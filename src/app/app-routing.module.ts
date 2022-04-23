@@ -1,6 +1,7 @@
+import { ShowScheduleComponent } from './scheduling/show-schedule/show-schedule.component';
 import { RoleGuard } from './guards/role.guard';
 import { AuthenticationGuard } from './guards/authentication.guard';
-import { SchedulingComponent } from './scheduling/scheduling.component';
+import { ScheduleComponent } from './scheduling/schedule/schedule.component';
 import { AvailabilityComponent } from './availability/availability.component';
 import { HomeTaskComponent } from './tasks/home-task/home-task.component';
 import { PersonalProfileComponent } from './personal-profile/personal-profile.component';
@@ -39,11 +40,16 @@ export const routes: Routes = [
   },
   {
     path: 'schedule',
-    component: SchedulingComponent,
+    component: ScheduleComponent,
     canActivate: [AuthenticationGuard, RoleGuard],
     data: {
       expectedRoles: ['Admin', 'Leader']
     }
+  },
+  {
+    path: 'show-schedule',
+    component: ShowScheduleComponent,
+    canActivate: [AuthenticationGuard],
   }
 ];
 

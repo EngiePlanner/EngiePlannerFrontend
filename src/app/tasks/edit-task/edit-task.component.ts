@@ -22,7 +22,7 @@ export class EditTaskComponent implements OnInit {
 
   form = new FormGroup ({
     name: new FormControl('', Validators.required),
-    startDate: new FormControl('', Validators.required),
+    availabilityDate: new FormControl('', Validators.required),
     plannedDate: new FormControl('', Validators.required),
     subteam: new FormControl('', Validators.required),
     duration: new FormControl('', Validators.required),
@@ -42,8 +42,8 @@ export class EditTaskComponent implements OnInit {
     return this.form.get('name') as FormControl
   }
 
-  get startDate(): FormControl {
-    return this.form.get('startDate') as FormControl
+  get availabilityDate(): FormControl {
+    return this.form.get('availabilityDate') as FormControl
   }
 
   get plannedDate(): FormControl {
@@ -109,22 +109,23 @@ export class EditTaskComponent implements OnInit {
   }
 
   selectTask() {
-    if (this.selectTask != null) {
+    if (this.selectedTask != null) {
       this.placeholder = '';
+
+      const startDate = this.pipe.transform(this.selectedTask!.availabilityDate, "yyyy-MM-dd");
+      const plannedDate = this.pipe.transform(this.selectedTask!.plannedDate, "yyyy-MM-dd");
+
+      this.form.patchValue({
+        name: this.selectedTask!.name,
+        availabilityDate: startDate,
+        plannedDate: plannedDate,
+        subteam: this.selectedTask!.subteam,
+        duration: this.selectedTask!.duration,
+        employee: this.selectedTask!.responsibleUsername
+      });
     } else {
       this.placeholder = 'Select task'
     }
-    
-    const startDate = this.pipe.transform(this.selectedTask!.startDate, "yyyy-MM-dd");
-    const plannedDate = this.pipe.transform(this.selectedTask!.plannedDate, "yyyy-MM-dd");
-    this.form.patchValue({
-      name: this.selectedTask!.name,
-      startDate: startDate,
-      plannedDate: plannedDate,
-      subteam: this.selectedTask!.subteam,
-      duration: this.selectedTask!.duration,
-      employee: this.selectedTask!.responsibleUsername
-    })
   }
 
   formatDate(date: any) {
@@ -136,8 +137,10 @@ export class EditTaskComponent implements OnInit {
     const task = {
       id: this.selectedTask?.id,
       name: this.name.value,
-      startDate: this.startDate.value,
+      availabilityDate: this.availabilityDate.value,
       plannedDate: this.plannedDate.value,
+      startDate: this.selectedTask?.startDate,
+      endDate: this.selectedTask?.endDate,
       subteam: this.subteam.value,
       duration: this.duration.value,
       responsibleUsername: this.employee.value,
@@ -149,6 +152,7 @@ export class EditTaskComponent implements OnInit {
       this.form.reset();
       this.selectedTask = null;
       this.loadData();
+      this.placeholder = 'Select task'
     },
     error => {
       if (error.status == 400) {

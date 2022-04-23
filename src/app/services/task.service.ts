@@ -32,12 +32,24 @@ export class TaskService {
     return this.http.get<ITask[]>(this.url + 'GetTasksByOwnerUsernameWithPlannedDateLowerThanGivenDate?ownerUsername=' + ownerUsername + '&date=' + date);
   }
 
-  getUnplannedTasks(): Observable<ITask[]> {
-    return this.http.get<ITask[]>(this.url + 'GetUnplannedTasks');
+  getUnscheduledTasks(): Observable<ITask[]> {
+    return this.http.get<ITask[]>(this.url + 'GetUnscheduledTasks');
   }
 
-  getUnppannedTasksByOwnerUsername(ownerUsername: string): Observable<ITask[]> {
-    return this.http.get<ITask[]>(this.url + 'GetUnplannedTasksByOwnerUsername?ownerUsername=' + ownerUsername);
+  getUnscheduledTasksByOwnerUsername(ownerUsername: string): Observable<ITask[]> {
+    return this.http.get<ITask[]>(this.url + 'GetUnscheduledTasksByOwnerUsername?ownerUsername=' + ownerUsername);
+  }
+
+  getScheduledTasks(): Observable<ITask[]> {
+    return this.http.get<ITask[]>(this.url + 'GetScheduledTasks');
+  }
+
+  getScheduledTasksByOwnerUsername(ownerUsername: string): Observable<ITask[]> {
+    return this.http.get<ITask[]>(this.url + 'GetScheduledTasksByOwnerUsername?ownerUsername=' + ownerUsername);
+  }
+
+  getScheduledTasksByResponsibleUsername(responsibleUsername: string): Observable<ITask[]> {
+    return this.http.get<ITask[]>(this.url + 'GetScheduledTasksByResponsibleUsername?ownerUsername=' + responsibleUsername);
   }
 
   createTask(task: ITask): Observable<ITask> {
@@ -48,6 +60,11 @@ export class TaskService {
   updateTask(task: ITask): Observable<ITask> {
     const body = JSON.stringify(task);
     return this.http.put<ITask>(this.url + 'UpdateTask', body, this.options);
+  }
+
+  updateTasks(tasks: ITask[]): Observable<ITask[]> {
+    const body = JSON.stringify(tasks);
+    return this.http.put<ITask[]>(this.url + 'UpdateTasks', body, this.options);
   }
 
   addPredecessors(taskId: number, predecessorsId: number[]): Observable<any> {

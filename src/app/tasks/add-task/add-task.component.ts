@@ -21,7 +21,7 @@ export class AddTaskComponent implements OnInit {
 
   form = new FormGroup ({
     name: new FormControl('', Validators.required),
-    startDate: new FormControl('', Validators.required),
+    availabilityDate: new FormControl('', Validators.required),
     plannedDate: new FormControl('', Validators.required),
     subteam: new FormControl('', Validators.required),
     duration: new FormControl('', Validators.required),
@@ -37,8 +37,8 @@ export class AddTaskComponent implements OnInit {
     return this.form.get('name') as FormControl
   }
 
-  get startDate(): FormControl {
-    return this.form.get('startDate') as FormControl
+  get availabilityDate(): FormControl {
+    return this.form.get('availabilityDate') as FormControl
   }
 
   get plannedDate(): FormControl {
@@ -87,7 +87,7 @@ export class AddTaskComponent implements OnInit {
   submit() {
     const task = {
       name: this.name.value,
-      startDate: this.startDate.value,
+      availabilityDate: this.availabilityDate.value,
       plannedDate: this.plannedDate.value,
       subteam: this.subteam.value,
       duration: this.duration.value,

@@ -1,5 +1,7 @@
 <app-message-bar #messageBar></app-message-bar>
-<div class="container">
+<app-loading-screen></app-loading-screen>
+<div class="not-found" *ngIf="!tasksFound"><h4>No unscheduled tasks found!</h4></div>
+<div *ngIf="!isScheduled && tasksFound" class="container">
   <div class="antet">
     <div class="title">
       <h4>Tasks scheduling</h4>
@@ -29,6 +31,15 @@
     <button type="button" class="a-button a-button--primary -without-icon"
       (click)="schedule()" [disabled]="isDisabled">
       <div class="a-button__label">Schedule</div>
+    </button>
+  </div>
+</div>
+<div *ngIf="isScheduled" class="gantt-container">
+  <gantt-chart [scheduledTasks]="scheduledTasks" [(updated)]="updatedTask"></gantt-chart>
+  <div class="save-btn">
+    <button type="button" class="a-button a-button--primary -without-icon"
+      (click)="saveSchedule()">
+      <div class="a-button__label">Save Schedule</div>
     </button>
   </div>
 </div>

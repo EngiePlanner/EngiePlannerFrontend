@@ -2,7 +2,7 @@ import { IUser } from './user.model';
 export interface ITask {
     id?: number;
     name: string;
-    startDate: Date;
+    availabilityDate: Date;
     plannedDate: Date;
     subteam: string;
     duration: number;
@@ -11,5 +11,6 @@ export interface ITask {
     responsibleDisplayName: string;
     ownerUsername: string;
     endDate: Date;
+    startDate: Date;
     isSelected?: boolean;
 }

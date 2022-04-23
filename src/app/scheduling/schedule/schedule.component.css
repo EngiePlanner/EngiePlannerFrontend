@@ -60,3 +60,31 @@
 .antet .a-checkbox label{
   background-color: #dfdfe0
 }
+
+.gantt-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bosch-white);
+}
+
+.gantt-container gantt-chart {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 75%;
+}
+
+.save-btn {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  margin-top: 2.5rem;
+  margin-left: 2rem;
+}
+
+.not-found {
+  margin-left: 10rem;
+  margin-top: 5rem;
+}

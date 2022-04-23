@@ -10,7 +10,7 @@
            notFoundText="No available tasks">
     </ng-select>
   </div>
-  <div class="a-box -floating" *ngIf="selectedTask">
+  <div class="a-box -floating" *ngIf="selectedTask!">
     <div class="content">
       <div class="title">Edit Task</div>
       <form [formGroup]="form">
@@ -30,8 +30,8 @@
             <div>
               <div class="field-name">Availability Date:</div>
               <div class="a-text-field">
-                <input formControlName="startDate" id="startDate" type="date"
-                  (blur)="validateForm(startDate, 'Start Date')" />
+                <input formControlName="availabilityDate" id="availabilityDate" type="date"
+                  (blur)="validateForm(availabilityDate, 'Availability Date')" />
               </div>
             </div>
           </div>
