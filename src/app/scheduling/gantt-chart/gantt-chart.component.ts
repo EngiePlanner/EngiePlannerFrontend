@@ -35,7 +35,7 @@ export class GanttChartComponent implements OnInit {
       daysPerMonth: 30
     });
 
-    gantt.config.xml_date = "%Y-%m-%d %H:%i";
+    gantt.config.xml_date = "%Y-%m-%d";
     gantt.config.duration_unit = "hour";
     gantt.config.work_time = true;
     gantt.config.round_dnd_dates = false;
@@ -80,6 +80,8 @@ export class GanttChartComponent implements OnInit {
       const availabilityDate = new Date(task.availabilityDate);
       var diff = original.duration*(1000*60*60);
 
+      task.start_date.setHours(0);
+      task.start_date.setMinutes(0);
       if (+task.end_date > +plannedDate){
         if (plannedDate.getDay() == 6) {
           diff = diff*2;
