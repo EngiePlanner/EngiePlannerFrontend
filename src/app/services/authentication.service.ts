@@ -25,8 +25,6 @@ export class AuthenticationService {
 
     const requestOptions = {
       headers: new HttpHeaders(headerDict),
-      withCredentials: true,
-      // responseType: 'text',
     };
 
     return this.http.post(this.url + 'login', requestOptions);

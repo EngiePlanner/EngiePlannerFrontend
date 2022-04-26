@@ -9,17 +9,21 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   username: string | undefined;
-  constructor(public authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
-    this.authenticationService.login().subscribe(response => {
-      this.authenticationService.saveToken(response.token);
-      this.username = this.authenticationService.getUsername()
-    });
+    if (this.authenticationService.activeSession()) {
+      this.router.navigate(['/home']);
+    }
+    else {
+      this.authenticationService.login().subscribe(response => {
+        this.authenticationService.saveToken(response.token);
+        this.username = this.authenticationService.getUsername()
+      });
+    }
   }
 
   login() {
     this.router.navigate(['/home']);
-}
-
+  }
 }
