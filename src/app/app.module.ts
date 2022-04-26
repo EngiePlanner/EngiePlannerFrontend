@@ -1,3 +1,4 @@
+import { JwtInterceptor } from './services/jwtInterceptor';
 import { LoadingScreenComponent } from './shared/loading-screen/loading-screen.component';
 import { GanttChartComponent } from './scheduling/gantt-chart/gantt-chart.component';
 import { ShowScheduleComponent } from './scheduling/show-schedule/show-schedule.component';
@@ -16,7 +17,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WinAuthInterceptor } from './services/winAuthInterceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -66,7 +66,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     RoleGuard,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: WinAuthInterceptor,
+      useClass: JwtInterceptor,
       multi: true
     },
     {
