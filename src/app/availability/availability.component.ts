@@ -19,6 +19,8 @@ export class AvailabilityComponent implements OnInit {
   availability: IAvailability | undefined;
   pipe = new DatePipe('en-US');
   currentWeekNumber: number | undefined;
+  selected: number | undefined;
+
 
   form = new FormGroup ({
     fromDate: new FormControl('', Validators.required),
@@ -75,6 +77,7 @@ export class AvailabilityComponent implements OnInit {
           toDate: toDate,
           availableHours: this.availability.defaultAvailableHours
         });
+        this.selected = week.number;
       }
       else {
         this.messageBar.addErrorTimeOut('Availability not found!');

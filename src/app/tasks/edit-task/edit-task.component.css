@@ -93,6 +93,7 @@
     max-width: 1000rem;
     height: 100%;
     background-color: rgba(192, 192, 194, 0.4);
+    z-index: 1;
 }
 
 .m-dialog .a-box {

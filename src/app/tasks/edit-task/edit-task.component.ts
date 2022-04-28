@@ -166,6 +166,7 @@ export class EditTaskComponent implements OnInit {
       this.messageBar.addSuccessTimeOut('Task deleted successfully!');
       this.form.reset()
       this.selectedTask = null;
+      this.placeholder = 'Select task'
       this.loadData()
     },
     _ => {
