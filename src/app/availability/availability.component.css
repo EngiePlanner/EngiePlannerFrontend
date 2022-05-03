@@ -68,6 +68,10 @@
     background-color: var(--bosch-gray-90);
 }
 
+.selected {
+  background-color: var(--bosch-gray-90);
+}
+
 .title {
     font-weight: bold;
 }

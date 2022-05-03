@@ -2,7 +2,7 @@
 <div class="container">
   <div class="antent">Weeks</div>
   <div class="box">
-    <div class="weeks a-box -floating" *ngFor="let week of availableWeeks" (click)="onWeekClick(week)">
+    <div class="weeks a-box -floating" [ngClass]="{'selected' : selected == week.number}" *ngFor="let week of availableWeeks" (click)="onWeekClick(week)">
       <div class="title">CW {{week.number}}</div>
       <div class="dates">
         <div>From: {{week.firstDay | date}}</div>
