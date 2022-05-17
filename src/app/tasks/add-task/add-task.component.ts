@@ -99,13 +99,12 @@ export class AddTaskComponent implements OnInit {
       this.messageBar.addSuccessTimeOut('Task added successfully!');
       this.form.reset();
       this.isFormValid = false;
-    },
-    error => {
-      if (error.status == 400) {
-        this.messageBar.addErrorTimeOut(error.error);
-      }
-    });
-
+      },
+      error => {
+        if (error.status == 400) {
+          this.messageBar.addErrorTimeOut(error.error);
+        }
+      });
   }
 
   validateForm(formControl: FormControl, targetInput: string): void {
