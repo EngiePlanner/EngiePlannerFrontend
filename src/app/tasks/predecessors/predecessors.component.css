@@ -1,26 +1,41 @@
+@media only screen and (max-height: 50rem) {
+  .container {
+    padding-top: 11rem !important;
+  }
+}
+
+@media only screen and (max-width: 100rem) {
+  .container {
+    padding-left: 3rem !important;
+  }
+}
+
 .container {
-    position: relative;
-    height: 90%;
-    overflow-y: auto;
+  position: relative;
+  margin-top: 3.1rem;
+  height: calc(100% - 8rem);
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
 }
 
 .a-box {
-    margin: 0;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 20%);
-    height: 35rem;
-    width: 60rem;
-    padding: 2rem;
-    margin-top: 4rem;
+  margin: 0;
+  height: 35rem;
+  width: 60rem;
+  padding: 2rem;
+  align-self: center;
+  display: flex;
+  justify-content: center;
 }
 
 .content {
-    margin: 0;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    text-align: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .title {
@@ -30,7 +45,6 @@
 
 .input-row {
     display: flex;
-    width: 50rem;
     justify-content: space-between;
 }
 

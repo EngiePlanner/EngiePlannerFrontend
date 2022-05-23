@@ -6,7 +6,7 @@ body {
 
 body {
     margin: 0;
-    background-color: #e6e4e4;
+    background-color: var(--bosch-gray-95);
 }
 
 svg {

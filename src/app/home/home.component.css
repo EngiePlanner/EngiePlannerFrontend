@@ -1,18 +1,18 @@
-@media only screen and (max-height: 40rem) {
+@media only screen and (max-height: 50rem) {
   .container {
-    padding-top: 18rem !important;
+    padding-top: 11rem !important;
   }
 }
 
-@media only screen and (max-width: 70rem) {
+@media only screen and (max-width: 100rem) {
   .container {
-    padding-left: 5rem !important;
+    padding-left: 20rem !important;
   }
 }
 
 .container {
   position: relative;
-  height: calc(100% - 5rem);
+  height: calc(100% - 4rem);
   width: 100%;
   display: flex;
   justify-content: center;
