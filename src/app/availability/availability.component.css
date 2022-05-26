@@ -1,22 +1,30 @@
+@media only screen and (max-height: 50rem) {
+  .container {
+  }
+}
+
 .container {
-    position: relative;
-    padding: 2rem;
-    display: block;
+  position: relative;
+  height: calc(100% - 4rem);
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  padding: 2rem;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
 .box {
-    position: fixed;
-    padding: 1rem;
-    padding-top: 0;
-    margin-top: 3rem;
-    left: 50%;
-    transform: translate(-50%);
-    width: 50%;
-    height: 18rem;
-    overflow-y: scroll;
-    text-align: center;
-    scrollbar-color: gray #e6e4e4;
-    scrollbar-width: thin;
+  margin: 0;
+  align-self: center;
+  justify-content: center;
+  width: 50%;
+  height: 20rem;
+  min-height: 10rem;
+  overflow-y: scroll;
+  text-align: center;
+  scrollbar-color: gray #e6e4e4;
+  scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar {
@@ -30,42 +38,35 @@
 }
 
 ::-webkit-scrollbar-thumb:active {
-    background: rgb(173, 173, 173);
-  }
+  background: rgb(173, 173, 173);
+}
 
 ::-webkit-scrollbar-corner {
   background: #000;
 }
 
 .content {
-    position: fixed;
-    padding: 1rem;
-    width: 50%;
-    height: 20rem;
-    left: 56%;
-    transform: translate(-50%);
-    margin-top: 25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .antent {
-    position: fixed;
-    font-weight: bolder;
-    left: 50%;
-    transform: translate(-60%);
-    font-size: 1.5rem;
-    margin-bottom: 3rem;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 1.5rem;
 }
 
 .weeks.a-box {
-    width: 10rem;
-    height: 5rem;
-    text-align: center;
-    margin: 0.5rem;
+  width: 10rem;
+  height: 5rem;
+  text-align: center;
+  margin: 0.5rem;
 }
 
 .weeks.a-box:hover {
-    cursor: pointer;
-    background-color: var(--bosch-gray-90);
+  cursor: pointer;
+  background-color: var(--bosch-gray-90);
 }
 
 .selected {
@@ -73,43 +74,43 @@
 }
 
 .title {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .input-row {
-    display: flex;
-    width: 75%;
-    justify-content: space-between;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .input-group {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 0 1rem;
-    margin-top: 1rem;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 1rem;
+  margin-top: 1rem;
 }
 
 .field-name {
-    text-align: left;
+  text-align: left;
 }
 
-.a-text-field input{
-    background-color: white;
+.a-text-field input {
+  background-color: white;
 }
 
 .a-button {
-    width: 15rem;
+  width: 15rem;
 }
 
 .submit-btn {
-    position: fixed;
-    left: 37%;
-    transform: translate(-50%);
-    margin-top: 30rem;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin-top: 2.5rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+form {
+  width: 50%;
 }
