@@ -20,7 +20,7 @@ export class AuthenticationService {
   login() : Observable<any> {
     const headerDict = {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin':'https://www.localhost:44301/authentication/login'
+      // 'Access-Control-Allow-Origin':'http://EngiePlannerAPI.com/authentication/login'
     };
 
     const requestOptions = {
