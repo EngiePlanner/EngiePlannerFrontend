@@ -22,8 +22,8 @@ export class ScheduleComponent implements OnInit {
   tasksFound = true;
   @ViewChild('messageBar') messageBar = {} as MessageBarComponent;
 
-  constructor(private taskService: TaskService, 
-    private aspSolverService: AspSolverService, 
+  constructor(private taskService: TaskService,
+    private aspSolverService: AspSolverService,
     private authenticationService: AuthenticationService,
     private loadingScreenService: LoadingScreenService) { }
 
@@ -76,11 +76,11 @@ export class ScheduleComponent implements OnInit {
       this.isScheduled = true;
       this.loadingScreenService.hideLoader();
     },
-    _ => {
+    error => {
       this.messageBar.addErrorTimeOut('Error on scheduling tasks!')
       this.loadingScreenService.hideLoader();
     });
-    
+
   }
 
   getScheduledTasks() {
@@ -97,7 +97,7 @@ export class ScheduleComponent implements OnInit {
           this.scheduledTasks = tasks;
         }
       });
-    } 
+    }
   }
 
   checkUncheckAll() {
