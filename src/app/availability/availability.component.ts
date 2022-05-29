@@ -50,7 +50,7 @@ export class AvailabilityComponent implements OnInit {
     this.userService.getAllWeeksFromCurrentYear().subscribe(weeks => {
       if (weeks) {
         this.weeks = weeks;
-        this.currentWeekNumber = this.getWeekNumber();
+        this.currentWeekNumber = this.getWeekNumber()-1;
         this.availableWeeks = this.weeks.filter(x => x.number >= this.currentWeekNumber!);
       }
       else {

@@ -1,7 +1,7 @@
 <header class="o-header">
-    <div class="o-header__logo">
+    <div class="o-header__logo" [routerLink]="['/home']">
         <span aria-label="Bosch Logo">
-            <a [routerLink]="['/home']">
+            <a>
                 <svg width="125px" height="24px" viewBox="0 0 108 24">
                     <path
                         fill="#ea0016"
@@ -17,6 +17,9 @@
             </a>
         </span>
         <span>Engie Planner</span>
+        <span class="logo-span">
+          <img class="logo" src="../../assets/logo.png" />
+        </span>
     </div>
     <nav class="o-header__nav">
         <a

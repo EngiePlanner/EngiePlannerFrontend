@@ -29,7 +29,11 @@
     display: flex;
     align-items: center;
     margin: auto 0;
-    width: 20rem;
+    width: 25rem;
+}
+
+.o-header__logo:hover {
+  cursor: pointer;
 }
 
 .o-header__logo svg {
@@ -104,14 +108,11 @@
 }
 
 .logo {
-    width: 2rem;
-    height: 2rem;
-    margin-left: 1rem;
+    width: 3.5rem;
+    margin-left: 0.5rem;
 }
 
-.icon-profile {
-    width: 2rem;
-    height: 2rem;
-    margin-left: 1rem;
-    cursor: pointer;
+.logo-span {
+  display: flex;
+  justify-content: center;
 }
