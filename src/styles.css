@@ -1,122 +1,130 @@
 html,
 body {
-    height: 100%;
-    overflow-y: hidden;
+  height: 100%;
+  overflow-y: hidden;
 }
 
 body {
-    margin: 0;
-    background-color: var(--bosch-gray-95);
+  margin: 0;
+  background-color: var(--bosch-gray-95);
 }
 
 svg {
-    vertical-align: unset !important;
+  vertical-align: unset !important;
 }
 
 .ng-select {
-    width: 100%;
-    height: 3rem;
-    border-style: none;
-    appearance: none;
-    background-color: var(--bosch-gray-90);
-    font-weight: 700;
-    white-space: nowrap;
+  width: 100%;
+  height: 3rem;
+  border-style: none;
+  appearance: none;
+  background-color: var(--bosch-gray-90);
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .select-tasks .ng-select {
-    background-color: var(--bosch-white);
+  background-color: var(--bosch-white);
 }
 
 .ng-select:hover {
-   cursor: pointer;
-   background-color: var(--bosch-gray-75);
+  cursor: pointer;
+  background-color: var(--bosch-gray-75);
 }
 
-.ng-select.ng-select-opened .ng-select-container
-{
-    height: 3rem;
+.ng-select.ng-select-opened .ng-select-container {
+  height: 3rem;
 }
 
 .ng-select .ng-select-container .ng-arrow-wrapper .ng-arrow {
-    width: 0.7rem;
-    height: 0.7rem;
-    border-top: 0.1rem solid var(--bosch-black);
-    border-right: 0.1rem solid var(--bosch-black);
-    margin-bottom: 0.3rem;
-    margin-right: 0.3rem;
-    transform: rotate(135deg);
+  width: 0.7rem;
+  height: 0.7rem;
+  border-top: 0.1rem solid var(--bosch-black);
+  border-right: 0.1rem solid var(--bosch-black);
+  margin-bottom: 0.3rem;
+  margin-right: 0.3rem;
+  transform: rotate(135deg);
 }
+
 .ng-select-opened .ng-select-container .ng-arrow-wrapper .ng-arrow {
-    margin: 0;
-    margin-right: 0.3rem;
-    transform: rotate(315deg);
+  margin: 0;
+  margin-right: 0.3rem;
+  transform: rotate(315deg);
 }
+
 .ng-select .ng-clear-wrapper, .ng-select .ng-arrow-wrapper {
-    align-self: center;
-    padding: 0.9rem;
+  align-self: center;
+  padding: 0.9rem;
 }
+
 .ng-select-container input {
-    height: 100%;
+  padding-left: 1rem;
+  height: 100%;
 }
+
 .ng-value-container {
-    align-items: center;
+  align-items: center;
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
-    text-align: left;
+  text-align: left;
 }
 
 .select-tasks .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 .ng-value-label {
-    margin-left: 3rem;
+  margin-left: 3rem;
 }
 
 .select-tasks .ng-value-label {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 .ng-dropdown-panel {
-    box-shadow: -0.02rem 0.1rem 0.4rem var(--shadow-fill);
-    font-weight: normal;
+  box-shadow: -0.02rem 0.1rem 0.4rem var(--shadow-fill);
+  font-weight: normal;
 }
 
 .select-tasks .ng-dropdown-panel {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .select-tasks .ng-option {
-   padding-left: 1rem;
+  padding-left: 1rem;
 }
 
 .ng-select .ng-select-container .ng-value-container .ng-placeholder {
-    font-weight: normal;
-    margin-left: 1rem;
+  font-weight: normal;
+  margin-left: 1rem;
 }
 
 .ng-select .ng-select-container .ng-value-container .ng-value {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .ng-option, .ng-optgroup {
-    background-color: var(--bosch-white);
+  background-color: var(--bosch-white);
 }
 
-.ng-option > div, .ng-optgroup > div {
-    margin: 0.25rem 0.5rem;
+.ng-option>div, .ng-optgroup>div {
+  margin: 0.25rem 0.5rem;
 }
 
 .ng-dropdown-panel-items .select-multiple {
-    position: relative;
-    width: 100rem;
- }
+  position: relative;
+  width: 100rem;
+}
 
 .a-checkbox label {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .ng-select .ng-dropdown-panel {
-    position: relative;
+  position: relative;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-input {
+  padding-left: 1rem;
 }

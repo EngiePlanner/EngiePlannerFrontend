@@ -27,7 +27,7 @@
           <div>
             <div class="field-name">To:</div>
             <div class="a-text-field">
-              <input formControlName="toDate" type="date" readonly />
+              <input formControlName="toDate" type="date" placeholder="dd/MM/yyyy" readonly />
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@
       </div>
     </form>
     <div class="submit-btn">
-      <button type="button" class="a-button a-button--primary -without-icon" (click)="update()">
+      <button type="button" class="a-button a-button--primary -without-icon" (click)="update()" [disabled]="disableButton">
         <div class="a-button__label">Update</div>
       </button>
     </div>

@@ -20,6 +20,7 @@ export class AvailabilityComponent implements OnInit {
   pipe = new DatePipe('en-US');
   currentWeekNumber: number | undefined;
   selected: number | undefined;
+  disableButton = true;
 
 
   form = new FormGroup ({
@@ -78,6 +79,7 @@ export class AvailabilityComponent implements OnInit {
           availableHours: this.availability.defaultAvailableHours
         });
         this.selected = week.number;
+        this.disableButton = false;
       }
       else {
         this.messageBar.addErrorTimeOut('Availability not found!');
@@ -99,6 +101,8 @@ export class AvailabilityComponent implements OnInit {
       this.messageBar.addSuccessTimeOut('Availability updated successfully!');
       this.form.reset();
       this.loadData();
+      this.selected = 0;
+      this.disableButton = true;
     },
     error => {
       if (error.status == 400) {

@@ -16,7 +16,7 @@ export class TaskValidator {
         this.formValidators.set('Availability Date', this.checkRequired);
         this.formValidators.set('Planned Date', this.checkRequired);
         this.formValidators.set('Subteam', this.checkRequired);
-        this.formValidators.set('Duration', this.checkRequired);
+        this.formValidators.set('Duration', this.checkDuration);
         this.formValidators.set('Employee', this.checkRequired);
 
         Array.from(this.formValidators.keys()).forEach((key) => {
@@ -26,12 +26,23 @@ export class TaskValidator {
 
     async checkRequired(formControl: FormControl, targetInput: string): Promise<void> {
         const errors: string[] = [];
-
         if (formControl.errors?.required) {
             errors.push(targetInput + ' is required!');
         }
 
         this.formErrors.set(targetInput, errors);
+    }
+
+    async checkDuration(formControl: FormControl, targetInput: string): Promise<void> {
+      const errors: string[] = [];
+
+      if (formControl.errors?.required) {
+        errors.push(targetInput + ' is required!');
+      } else if (formControl.value < 1 || formControl.value > 38) {
+        errors.push(targetInput + ' must be between 1 and 38 hours!');
+      }
+
+      this.formErrors.set(targetInput, errors);
     }
 
     clearErrors(): void {

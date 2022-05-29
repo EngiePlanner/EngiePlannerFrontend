@@ -70,6 +70,7 @@ export class PredecessorsComponent implements OnInit {
       this.selectedTask = undefined;
       this.selectedPredecessors = undefined;
       this.potentialPredecessors = [];
+      this.loadData();
     },
     error => {
       this.messageBar.addErrorTimeOut('Error in adding predecessors!')
