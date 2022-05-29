@@ -26,7 +26,7 @@
               <div class="field-name">Availability Date:</div>
               <div class="a-text-field">
                 <input formControlName="availabilityDate" id="availabilityDate" type="date"
-                  (blur)="validateForm(availabilityDate, 'Availability Date')" />
+                  (blur)="validateForm(availabilityDate, 'Availability Date')" min="{{today | date:'yyyy-MM-dd'}}"/>
               </div>
             </div>
           </div>
@@ -34,7 +34,7 @@
             <div>
               <div class="field-name">Planned Date:</div>
               <div class="a-text-field">
-                <input formControlName="plannedDate" type="date" (blur)="validateForm(plannedDate, 'Planned Date')" />
+                <input formControlName="plannedDate" type="date" (blur)="validateForm(plannedDate, 'Planned Date')" min="{{today | date:'yyyy-MM-dd'}}"/>
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@
             <div>
               <div class="field-name">Duration:</div>
               <div class="a-text-field">
-                <input formControlName="duration" type="number" placeholder="ex: 5" min="1" />
+                <input formControlName="duration" type="number" placeholder="ex: 5" min="1" max="38" (blur)="validateForm(duration, 'Duration')"/>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@
         <div class="input-row">
           <div class="input-group">
             <div>
-              <div class="field-name">Respnsbile:</div>
+              <div class="field-name">Responsible:</div>
               <div class="a-dropdown">
                 <select formControlName="employee" id="employee" (blur)="validateForm(employee, 'Employee')">
                   <option value="{{employee.username}}" *ngFor="let employee of users">

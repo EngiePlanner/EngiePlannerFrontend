@@ -18,7 +18,7 @@ export class EditTaskComponent implements OnInit {
   formErrors: string[] = [] as string[];
   @ViewChild('messageBar') messageBar = {} as MessageBarComponent;
   isFormValid = false;
-  today = Date.now();
+  today: Date | undefined;
 
   form = new FormGroup ({
     name: new FormControl('', Validators.required),
@@ -112,6 +112,7 @@ export class EditTaskComponent implements OnInit {
     if (this.selectedTask != null) {
       this.placeholder = '';
 
+      this.today = this.selectedTask?.availabilityDate;
       const startDate = this.pipe.transform(this.selectedTask!.availabilityDate, "yyyy-MM-dd");
       const plannedDate = this.pipe.transform(this.selectedTask!.plannedDate, "yyyy-MM-dd");
 

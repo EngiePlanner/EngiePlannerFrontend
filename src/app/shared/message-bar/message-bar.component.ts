@@ -10,17 +10,21 @@ export class MessageBarComponent {
   @Input() successes: string[] = [] as string[];
 
   addErrorTimeOut(error: string, ms = 4000): void {
-      this.errors.push(error);
-      setTimeout(async () => {
+      if (!this.errors.includes(error)) {
+        this.errors.push(error);
+        setTimeout(async () => {
           await this.errorClick(error);
-      }, ms);
+        }, ms);
+      }
   }
 
   addSuccessTimeOut(success: string, ms = 4000): void {
-      this.successes.push(success);
-      setTimeout(async () => {
-          await this.successClick(success);
-      }, ms);
+      if(!this.successes.includes(success)) {
+        this.successes.push(success);
+        setTimeout(async () => {
+            await this.successClick(success);
+        }, ms);
+      }
   }
 
   async errorClick(clickedError: string): Promise<void> {
@@ -29,20 +33,20 @@ export class MessageBarComponent {
           const messageElement = document.getElementById(
               'error-' + i
           ) as HTMLElement;
-          messageElement.classList.add('drop-element-animation');
+          messageElement?.classList.add('drop-element-animation');
       }
 
       const messageElement = document.getElementById(
           'error-' + indexOfMessage
       ) as HTMLElement;
-      messageElement.classList.add('close-message-animation');
+      messageElement?.classList.add('close-message-animation');
       setTimeout(() => {
           this.errors.splice(indexOfMessage, 1);
           for (let i = 0; i < indexOfMessage; i++) {
               const messageElement = document.getElementById(
                   'error-' + i
               ) as HTMLElement;
-              messageElement.classList.remove('drop-element-animation');
+              messageElement?.classList.remove('drop-element-animation');
           }
       }, 500);
   }
@@ -54,7 +58,7 @@ export class MessageBarComponent {
           const messageElement = document.getElementById(
               'successes-' + i
           ) as HTMLElement;
-          messageElement.classList.add('drop-element-animation');
+          messageElement?.classList.add('drop-element-animation');
       }
 
       for (
@@ -65,20 +69,20 @@ export class MessageBarComponent {
           const messageElement = document.getElementById(
               'error-' + errorIndex
           ) as HTMLElement;
-          messageElement.classList.add('drop-element-animation');
+          messageElement?.classList.add('drop-element-animation');
       }
 
       const messageElement = document.getElementById(
           'successes-' + indexOfMessage
       ) as HTMLElement;
-      messageElement.classList.add('close-message-animation');
+      messageElement?.classList.add('close-message-animation');
       setTimeout(() => {
           this.successes.splice(indexOfMessage, 1);
           for (let i = 0; i < indexOfMessage; i++) {
               const messageElement = document.getElementById(
                   'successes-' + i
               ) as HTMLElement;
-              messageElement.classList.remove('drop-element-animation');
+              messageElement?.classList.remove('drop-element-animation');
           }
 
           for (
@@ -89,7 +93,7 @@ export class MessageBarComponent {
               const messageElement = document.getElementById(
                   'error-' + errorIndex
               ) as HTMLElement;
-              messageElement.classList.remove('drop-element-animation');
+              messageElement?.classList.remove('drop-element-animation');
           }
       }, 500);
   }
