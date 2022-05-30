@@ -19,13 +19,17 @@
     height: 75%;
   }
 
-  .save-btn {
+  .a-button {
+    width: 15rem;
+    margin: auto 1rem;
+}
+
+.submit-btn {
     display: flex;
-    width: 90%;
+    width: 100%;
     justify-content: center;
     margin-top: 2.5rem;
-    margin-left: 2rem;
-  }
+}
 
   .not-found {
     text-align: center;
