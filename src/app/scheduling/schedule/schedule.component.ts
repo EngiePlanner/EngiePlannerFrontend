@@ -51,7 +51,7 @@ export class ScheduleComponent implements OnInit {
           this.tasks = tasks
         }
         else {
-          this.messageBar.addErrorTimeOut('No tasks found!');
+          this.tasksFound = false;
         }
       });
     }
@@ -76,7 +76,7 @@ export class ScheduleComponent implements OnInit {
       this.isScheduled = true;
       this.loadingScreenService.hideLoader();
     },
-    error => {
+    _ => {
       this.messageBar.addErrorTimeOut('Error on scheduling tasks!')
       this.loadingScreenService.hideLoader();
     });
