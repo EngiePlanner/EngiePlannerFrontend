@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { LoadingScreenService } from './../../services/loading-screen.service';
 import { TaskService } from 'src/app/services/task.service';
 import { AuthenticationService } from './../../services/authentication.service';
@@ -17,9 +18,11 @@ export class ShowScheduleComponent implements OnInit {
   @ViewChild('messageBar') messageBar = {} as MessageBarComponent;
   loaded = false;
   tasksFound = true;
+  datePipe = new DatePipe('en-US');
 
-  constructor(private authenticationService: AuthenticationService, 
-    private taskService: TaskService) { }
+  constructor(private authenticationService: AuthenticationService,
+    private taskService: TaskService,
+    private loadingService: LoadingScreenService) { }
 
   ngOnInit() {
     this.loadData();
@@ -72,5 +75,30 @@ export class ShowScheduleComponent implements OnInit {
         this.messageBar.addErrorTimeOut(error.error);
       }
     });
+  }
+
+  exportPdf() {
+    const today = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
+    this.loadingService.showLoader();
+    this.taskService.createPdf(this.scheduledTasks).subscribe(
+      (data: Blob) => {
+        const file = new Blob([data], { type: 'application/pdf '});
+        const fileURL = URL.createObjectURL(file);
+        const a = document.createElement('a');
+        a.href = fileURL;
+        a.target = '_blank';
+        a.download =
+          'Scheduled_Tasks_' +
+          today +
+          '.pdf';
+        document.body.appendChild(a);
+        a.click();
+        this.messageBar.addSuccessTimeOut('PDF exported successfully!');
+      },
+      (_) => {
+        this.messageBar.addErrorTimeOut('Error downloading the file');
+      }
+    )
+    this.loadingService.hideLoader();
   }
 }

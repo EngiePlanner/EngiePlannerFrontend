@@ -75,4 +75,17 @@ export class TaskService {
   deleteTask(taskId: number): Observable<ITask> {
     return this.http.delete<ITask>(this.url + 'DeleteTask?taskId=' + taskId);
   }
+
+  createPdf(tasks: ITask[]): Observable<any> {
+    const header = new HttpHeaders({
+      Accept: 'application/pdf',
+      'Content-Type': 'application/json',
+      responseType: 'blob',
+    });
+
+    const body = JSON.stringify(tasks);
+    return this.http.post<any>(
+      this.url + 'CreateScheduledTasksPdf', body, { headers: header, responseType: 'blob' as 'json' }
+    );
+  }
 }
