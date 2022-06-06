@@ -66,14 +66,14 @@ export class PredecessorsComponent implements OnInit {
 
   submit() {
     this.taskService.addPredecessors(this.selectedTask?.id!, this.selectedPredecessors!).subscribe(response => {
-      this.messageBar.addSuccessTimeOut('Predecessors added successfully!');
+      this.messageBar.addSuccessTimeOut('Predecessors updated successfully!');
       this.selectedTask = undefined;
       this.selectedPredecessors = undefined;
       this.potentialPredecessors = [];
       this.loadData();
     },
     error => {
-      this.messageBar.addErrorTimeOut('Error in adding predecessors!')
+      this.messageBar.addErrorTimeOut('Error in updating predecessors!')
     });
   }
 
