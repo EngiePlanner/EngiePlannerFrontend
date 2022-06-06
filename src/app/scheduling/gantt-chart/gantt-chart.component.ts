@@ -1,8 +1,7 @@
 import { GanttLink } from './../../models/gantt-link.model';
 import { GanttTask } from './../../models/gantt-task.model';
 import { ITask } from './../../models/task.model';
-import { TaskService } from './../../services/task.service';
-import { Component, ElementRef, Input, OnInit, Output, ViewChild, ViewEncapsulation, EventEmitter, SimpleChange, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild, ViewEncapsulation, EventEmitter, OnDestroy } from '@angular/core';
 import { gantt } from 'dhtmlx-gantt';
 import { DatePipe } from '@angular/common';
 
@@ -20,6 +19,7 @@ export class GanttChartComponent implements OnInit, OnDestroy {
   ganttTasks: GanttTask[] = [] as GanttTask[];
   ganttLinks: GanttLink[] = [] as GanttLink[];
   pipe = new DatePipe('en-US');
+  eventId: string | undefined;
 
   constructor(private el: ElementRef) {
     this.ganttContainer = el;
@@ -104,7 +104,7 @@ export class GanttChartComponent implements OnInit, OnDestroy {
 
     }, "");
 
-    gantt.attachEvent("onAfterTaskDrag", (id, mode, e) =>{
+    this.eventId = gantt.attachEvent("onAfterTaskDrag", (id, mode, e) =>{
       const ganttTask = gantt.getTask(id);
       this.updated = this.scheduledTasks.filter(x => x.id == id)[0];
       this.updated.startDate = new Date(ganttTask.start_date);
@@ -162,6 +162,7 @@ export class GanttChartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    gantt.detachAllEvents();
+    gantt.detachEvent(this.eventId!);
+    gantt.clearAll();
   }
 }

@@ -94,11 +94,12 @@ export class ShowScheduleComponent implements OnInit {
         document.body.appendChild(a);
         a.click();
         this.messageBar.addSuccessTimeOut('PDF exported successfully!');
+        this.loadingService.hideLoader();
       },
       (_) => {
         this.messageBar.addErrorTimeOut('Error downloading the file');
+        this.loadingService.hideLoader();
       }
     )
-    this.loadingService.hideLoader();
   }
 }
