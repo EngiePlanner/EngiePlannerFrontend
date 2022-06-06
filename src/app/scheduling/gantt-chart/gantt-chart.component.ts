@@ -2,7 +2,7 @@ import { GanttLink } from './../../models/gantt-link.model';
 import { GanttTask } from './../../models/gantt-task.model';
 import { ITask } from './../../models/task.model';
 import { TaskService } from './../../services/task.service';
-import { Component, ElementRef, Input, OnInit, Output, ViewChild, ViewEncapsulation, EventEmitter } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild, ViewEncapsulation, EventEmitter, SimpleChange, OnDestroy } from '@angular/core';
 import { gantt } from 'dhtmlx-gantt';
 import { DatePipe } from '@angular/common';
 
@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './gantt-chart.component.html',
   styleUrls: ['./gantt-chart.component.css']
 })
-export class GanttChartComponent implements OnInit {
+export class GanttChartComponent implements OnInit, OnDestroy {
   @ViewChild("gantt") ganttContainer: ElementRef;
   @Input() scheduledTasks: ITask[] = [] as ITask[];
   @Input() updated: ITask | undefined;
@@ -159,5 +159,9 @@ export class GanttChartComponent implements OnInit {
       'Planned Date: ' + this.pipe.transform(task.plannedDate, 'yyyy-MM-dd');
 
     return description
+  }
+
+  ngOnDestroy() {
+    gantt.detachAllEvents();
   }
 }

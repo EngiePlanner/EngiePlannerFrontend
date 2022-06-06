@@ -13,7 +13,7 @@ import { MessageBarComponent } from '../../shared/message-bar/message-bar.compon
 })
 export class ScheduleComponent implements OnInit {
   tasks: ITask[] = [] as ITask[];
-  @Input() scheduledTasks: ITask[] = [] as ITask[];
+  scheduledTasks: ITask[] = [] as ITask[];
   updatedTask: ITask | undefined;
   selectedTasks: ITask[] = [] as ITask[];
   isMasterSel = false;
