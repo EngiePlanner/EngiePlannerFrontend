@@ -13,7 +13,7 @@ import { MessageBarComponent } from 'src/app/shared/message-bar/message-bar.comp
   styleUrls: ['./show-schedule.component.css']
 })
 export class ShowScheduleComponent implements OnInit {
-  @Input() scheduledTasks: ITask[] = [] as ITask[];
+  scheduledTasks: ITask[] = [] as ITask[];
   updatedTask: ITask | undefined;
   @ViewChild('messageBar') messageBar = {} as MessageBarComponent;
   loaded = false;
