@@ -49,7 +49,7 @@ export class TaskService {
   }
 
   getScheduledTasksByResponsibleUsername(responsibleUsername: string): Observable<ITask[]> {
-    return this.http.get<ITask[]>(this.url + 'GetScheduledTasksByResponsibleUsername?ownerUsername=' + responsibleUsername);
+    return this.http.get<ITask[]>(this.url + 'GetScheduledTasksByResponsibleUsername?responsibleUsername=' + responsibleUsername);
   }
 
   createTask(task: ITask): Observable<ITask> {

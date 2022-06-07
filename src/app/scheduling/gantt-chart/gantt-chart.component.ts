@@ -1,3 +1,4 @@
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { GanttLink } from './../../models/gantt-link.model';
 import { GanttTask } from './../../models/gantt-task.model';
 import { ITask } from './../../models/task.model';
@@ -21,7 +22,7 @@ export class GanttChartComponent implements OnInit, OnDestroy {
   pipe = new DatePipe('en-US');
   eventId: string | undefined;
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef, private authenticationService: AuthenticationService) {
     this.ganttContainer = el;
    }
 
@@ -123,6 +124,12 @@ export class GanttChartComponent implements OnInit, OnDestroy {
       let stringEndDate = this.pipe.transform(x.endDate, 'yyyy-MM-dd');
       let stringPlannedDate = this.pipe.transform(x.plannedDate, 'yyyy-MM-dd');
       let stringAvailabilityDate = this.pipe.transform(x.availabilityDate, 'yyyy-MM-dd');
+      let color;
+      if (x.responsibleUsername == this.authenticationService.getUsername()) {
+        color = '#62b16e';
+      } else {
+        color = '#04a5ca';
+      }
       const ganttTask = {
         id: x.id,
         text: x.name,
@@ -132,7 +139,8 @@ export class GanttChartComponent implements OnInit, OnDestroy {
         responsible: x.responsibleDisplayName,
         description: this.generateDescription(x),
         plannedDate: stringPlannedDate,
-        availabilityDate: stringAvailabilityDate
+        availabilityDate: stringAvailabilityDate,
+        color: color
       } as GanttTask
       this.ganttTasks.push(ganttTask);
     })
