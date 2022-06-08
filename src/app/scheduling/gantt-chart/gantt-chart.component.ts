@@ -21,6 +21,7 @@ export class GanttChartComponent implements OnInit, OnDestroy {
   ganttLinks: GanttLink[] = [] as GanttLink[];
   pipe = new DatePipe('en-US');
   eventId: string | undefined;
+  deleteEventId: string | undefined;
 
   constructor(private el: ElementRef, private authenticationService: AuthenticationService) {
     this.ganttContainer = el;
@@ -115,7 +116,7 @@ export class GanttChartComponent implements OnInit, OnDestroy {
       this.updatedChange.next(this.updated)
     }, "");
 
-    gantt.attachEvent("onLightboxDelete", (id, node, e) => {
+    this.deleteEventId = gantt.attachEvent("onLightboxDelete", (id, node, e) => {
       this.updated = this.scheduledTasks.filter(x => x.id == id)[0];
       this.updated.startDate = undefined;
       this.updated.endDate = undefined;
@@ -181,6 +182,7 @@ export class GanttChartComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     gantt.detachEvent(this.eventId!);
+    gantt.detachEvent(this.deleteEventId!);
     gantt.clearAll();
   }
 }
