@@ -116,13 +116,12 @@ export class GanttChartComponent implements OnInit, OnDestroy {
       this.updatedChange.next(this.updated)
     }, "");
 
-    this.deleteEventId = gantt.attachEvent("onLightboxDelete", (id, node, e) => {
+    this.deleteEventId = gantt.attachEvent("onAfterTaskDelete", (id,item) => {
       this.updated = this.scheduledTasks.filter(x => x.id == id)[0];
       this.updated.startDate = undefined;
       this.updated.endDate = undefined;
-      this.updatedChange.next(this.updated)
-      return true;
-  }, "");
+      this.updatedChange.next(this.updated);
+    }, "");
 
     this.mapTasksForGanttChart(this.scheduledTasks);
     this.mapLinksForGanttChart(this.scheduledTasks);
