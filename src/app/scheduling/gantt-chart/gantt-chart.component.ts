@@ -43,7 +43,9 @@ export class GanttChartComponent implements OnInit, OnDestroy {
     gantt.config.drag_resize = false;
     gantt.config.drag_progress = false;
     gantt.config.drag_links = false;
-    gantt.config.buttons_left = [];
+    gantt.config.buttons_left = ["gantt_delete_btn"];
+    gantt.locale.labels.icon_delete = "Unschedule";
+    gantt.locale.labels.confirm_deleting = "This task will be unscheduled, are you sure?";
     gantt.config.buttons_right = ["gantt_cancel_btn"];
     gantt.locale.labels.icon_cancel = "Close";
 
@@ -112,6 +114,14 @@ export class GanttChartComponent implements OnInit, OnDestroy {
       this.updated.endDate = new Date(ganttTask.end_date);
       this.updatedChange.next(this.updated)
     }, "");
+
+    gantt.attachEvent("onLightboxDelete", (id, node, e) => {
+      this.updated = this.scheduledTasks.filter(x => x.id == id)[0];
+      this.updated.startDate = undefined;
+      this.updated.endDate = undefined;
+      this.updatedChange.next(this.updated)
+      return true;
+  }, "");
 
     this.mapTasksForGanttChart(this.scheduledTasks);
     this.mapLinksForGanttChart(this.scheduledTasks);
